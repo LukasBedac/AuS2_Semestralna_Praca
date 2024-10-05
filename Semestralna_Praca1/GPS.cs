@@ -12,5 +12,6 @@ namespace Semestralna_Praca1
         public double PoziciaSirky { get; set; }
         public char Dlzka { get; set; }
         public double PoziciaDlzky { get; set; }
-    }
+    } 
+
 }

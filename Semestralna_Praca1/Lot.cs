@@ -1,15 +1,22 @@
 ﻿namespace Semestralna_Praca1
 {
-    public class Lot<T> : DataKey<T> where T : DataKey<T>
+    public class Lot : DataKey<Lot>
     {
         public int LotNumber { get; set; }
         public string Description { get; set; }
-        public List<RealEstate<T>> RealEstatesList { get; set; }
+        public List<RealEstate> RealEstatesList { get; set; }
         public List<GPS> GPSCoords { get; set; }
         public double X { get; set; }
         public double Y { get; set; }
 
-        public int Compare(T data, int level)
+        public Lot()
+        {
+            GPSCoords = new List<GPS>();
+            RealEstatesList = new List<RealEstate>();
+            Description = string.Empty;
+        }
+
+        public int Compare(Lot data, int level)
         {
             
             if (data == null)

@@ -2,19 +2,17 @@
 {
     public class KDTree<T> where T : DataKey<T>
     {    
-        public KDTree(int dimension) 
+        public KDTree(Node<T> node) 
         {
-            Root = null;
-            Dimension = dimension;
+            Root = node;
+            Level = 0;
+            LastInserted = Root;
         }
 
-        public int Dimension { get; set; }
+        public int Level { get; set; }
         public Node<T> Root { get; set; }
+        public Node<T> LastInserted { get; set; }
 
-        public int Level(Node<T> node)
-        {
-            return 0;
-        }
         public void RotateRight() 
         {
             
@@ -25,6 +23,9 @@
         }
         public bool Insert(Node<T> node) 
         {
+            LastInserted = Root;
+            Level = 0;
+            int insertedPoints = 0;
             if (node == null)
             {
                 return false;
@@ -33,10 +34,47 @@
             {
                 return false;
             }
+            while (insertedPoints < 2) 
+            {
+                int comparison = LastInserted.Data.Compare(node.Data, Level);                                
+                if (comparison == -1)
+                {
+                    if (LastInserted.Left == null)
+                    {
+                        node.Parent = LastInserted;
+                        LastInserted.Left = node;                        
+                        insertedPoints++;
+                    } else
+                    {
+                        LastInserted = LastInserted.Left;
+                        continue;
+                    }
 
-
-
-            return false;
+                } else if (comparison == 1)
+                {
+                    if (LastInserted.Right == null)
+                    {
+                        node.Parent = LastInserted;
+                        LastInserted.Right = node;
+                        insertedPoints++;
+                    }  else
+                    {
+                        LastInserted = LastInserted.Right;
+                        continue;
+                    }                 
+                } else
+                {
+                    return false;
+                }                
+                if (insertedPoints == 1)
+                {
+                    LastInserted = Root;
+                }
+                Level++;
+               
+            }
+            return true;
+            
         }
         public bool Remove(Node<T> node)
         {

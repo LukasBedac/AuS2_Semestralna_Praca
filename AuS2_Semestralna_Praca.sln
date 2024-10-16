@@ -3,9 +3,11 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio Version 17
 VisualStudioVersion = 17.9.34728.123
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "AuS2_Semestralna_Praca", "AuS2_Semestralna_Praca\AuS2_Semestralna_Praca.csproj", "{24F0CBA8-50AC-4FB9-BD94-B4E0382EA914}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "AuS2_Semestralna_Praca", "AuS2_Semestralna_Praca\AuS2_Semestralna_Praca.csproj", "{24F0CBA8-50AC-4FB9-BD94-B4E0382EA914}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Semestralna_Praca1", "Semestralna_Praca1\Semestralna_Praca1.csproj", "{26E64F58-46AF-4826-B66A-24AE77A517BF}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Semestralna_Praca1", "Semestralna_Praca1\Semestralna_Praca1.csproj", "{26E64F58-46AF-4826-B66A-24AE77A517BF}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "GUIAuS2", "GUIAuS2\GUIAuS2.csproj", "{C1615D71-D7AB-4FF3-9CC1-8B717A47DA18}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -21,6 +23,10 @@ Global
 		{26E64F58-46AF-4826-B66A-24AE77A517BF}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{26E64F58-46AF-4826-B66A-24AE77A517BF}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{26E64F58-46AF-4826-B66A-24AE77A517BF}.Release|Any CPU.Build.0 = Release|Any CPU
+		{C1615D71-D7AB-4FF3-9CC1-8B717A47DA18}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{C1615D71-D7AB-4FF3-9CC1-8B717A47DA18}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{C1615D71-D7AB-4FF3-9CC1-8B717A47DA18}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{C1615D71-D7AB-4FF3-9CC1-8B717A47DA18}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

@@ -1,0 +1,64 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<ClassDiagram MajorVersion="1" MinorVersion="1">
+  <Class Name="Semestralna_Praca1.GPS">
+    <Position X="1" Y="0.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>BAAAAAAAAAAAAAAAAAQIAABAAAgAAAAAAAAAAAAAAgA=</HashCode>
+      <FileName>GPS.cs</FileName>
+    </TypeIdentifier>
+    <ShowAsAssociation>
+      <Property Name="Lot" />
+      <Property Name="RealEstate" />
+    </ShowAsAssociation>
+  </Class>
+  <Class Name="Semestralna_Praca1.KDTree&lt;Key, T&gt;">
+    <Position X="4.75" Y="2.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAEAAAAgAACAAAAAABAAAAAAIAAABAAAAAEAAIAA=</HashCode>
+      <FileName>KDTree.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Semestralna_Praca1.Lot">
+    <Position X="0.5" Y="2.75" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>BAAAAAAAAAAgAAAAAAAAAAAAAAAAAAAAAAAAAgAAgAA=</HashCode>
+      <FileName>Lot.cs</FileName>
+    </TypeIdentifier>
+    <ShowAsAssociation>
+      <Property Name="RealEstate" />
+    </ShowAsAssociation>
+  </Class>
+  <Class Name="Semestralna_Praca1.Node&lt;T&gt;">
+    <Position X="6.5" Y="2.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAQAAAAAQAAAAAAAABAACACAAAAAAAA=</HashCode>
+      <FileName>Node.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Semestralna_Praca1.RealEstate">
+    <Position X="3" Y="2.75" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAACAgAAAAAAAIAAAAAAgAAAAAAAAAAAAAgAA=</HashCode>
+      <FileName>RealEstate.cs</FileName>
+    </TypeIdentifier>
+    <ShowAsAssociation>
+      <Property Name="Lot" />
+    </ShowAsAssociation>
+  </Class>
+  <Class Name="Semestralna_Praca1.Key">
+    <Position X="7.5" Y="0.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAABAAAAAYAA=</HashCode>
+      <FileName>Key.cs</FileName>
+    </TypeIdentifier>
+    <Lollipop Orientation="Left" Position="0.148" />
+  </Class>
+  <Interface Name="Semestralna_Praca1.DataKey">
+    <Position X="5" Y="0.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAABAAAAAAAA=</HashCode>
+      <FileName>DataKey.cs</FileName>
+    </TypeIdentifier>
+  </Interface>
+  <Font Name="Segoe UI" Size="9" />
+</ClassDiagram>

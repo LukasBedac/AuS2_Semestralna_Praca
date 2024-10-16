@@ -1,17 +1,17 @@
 ﻿namespace Semestralna_Praca1
 {
-    public class KDTree<T> where T : DataKey<T>
+    public class KDTree<Key, T> 
     {    
         public KDTree(Node<T> node) 
         {
             Root = node;
             Level = 0;
-            LastInserted = Root;
+            CurrentNode = Root;
         }
 
         public int Level { get; set; }
         public Node<T> Root { get; set; }
-        public Node<T> LastInserted { get; set; }
+        public Node<T> CurrentNode { get; set; }
 
         public void RotateRight() 
         {
@@ -23,9 +23,8 @@
         }
         public bool Insert(Node<T> node) 
         {
-            LastInserted = Root;
+            CurrentNode = Root;
             Level = 0;
-            int insertedPoints = 0;
             if (node == null)
             {
                 return false;
@@ -34,45 +33,39 @@
             {
                 return false;
             }
-            while (insertedPoints < 2) 
+            while (CurrentNode != null) 
             {
-                int comparison = LastInserted.Data.Compare(node.Data, Level);                                
+                int comparison = CurrentNode.Key.Compare(node.Key, Level);                               
                 if (comparison == -1)
                 {
-                    if (LastInserted.Left == null)
+                    if (CurrentNode.Left == null)
                     {
-                        node.Parent = LastInserted;
-                        LastInserted.Left = node;                        
-                        insertedPoints++;
+                        CurrentNode.Left = node;                   
                     } else
                     {
-                        LastInserted = LastInserted.Left;
+                        CurrentNode = CurrentNode.Left;
+                        Level++;
                         continue;
                     }
 
                 } else if (comparison == 1)
                 {
-                    if (LastInserted.Right == null)
+                    if (CurrentNode.Right == null)
                     {
-                        node.Parent = LastInserted;
-                        LastInserted.Right = node;
-                        insertedPoints++;
+                        CurrentNode.Right = node;
                     }  else
                     {
-                        LastInserted = LastInserted.Right;
+                        CurrentNode = CurrentNode.Right;
+                        Level++;
                         continue;
                     }                 
                 } else
                 {
                     return false;
-                }                
-                if (insertedPoints == 1)
-                {
-                    LastInserted = Root;
-                }
+                }                               
                 Level++;
                
-            }
+            }            
             return true;
             
         }

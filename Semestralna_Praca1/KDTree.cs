@@ -75,8 +75,40 @@
         }
         public bool Find(Node<T> node)
         {
-            return false;
-        }
+            if (node == null || Root == null)
+            {
+                return false;
+            }
 
+            CurrentNode = Root;
+            Level = 0;
+            int comparison;
+            
+            while (CurrentNode != node)
+            {
+                if (CurrentNode == null)
+                {
+                    return false;
+                }
+
+                comparison = CurrentNode.Key.Compare(node.Key, Level);
+
+                if (comparison == -1)
+                {
+                    CurrentNode = CurrentNode.Left;
+                    Level++;
+                    continue;
+                } else if (comparison == 1)
+                {
+                    CurrentNode = CurrentNode.Right;
+                    Level++;
+                    continue;
+                } else
+                {
+                    return true;
+                }
+            }
+            return true;
+        }
     }
 }

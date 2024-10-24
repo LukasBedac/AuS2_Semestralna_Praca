@@ -21,7 +21,7 @@
         {
             
         }
-        public bool Insert(Node<T> node) 
+        public bool Insert(Node<T> node)
         {
             CurrentNode = Root;
             Level = 0;
@@ -40,7 +40,8 @@
                 {
                     if (CurrentNode.Left == null)
                     {
-                        CurrentNode.Left = node;                   
+                        CurrentNode.Left = node;
+                        return true;
                     } else
                     {
                         CurrentNode = CurrentNode.Left;
@@ -53,6 +54,7 @@
                     if (CurrentNode.Right == null)
                     {
                         CurrentNode.Right = node;
+                        return true;
                     }  else
                     {
                         CurrentNode = CurrentNode.Right;
@@ -61,8 +63,13 @@
                     }                 
                 } else
                 {
-                    return false;
-                }                               
+                    if (CurrentNode.Key.Compare(node.Key))
+                    {
+                        CurrentNode.Duplicates.Add(node);
+                        node.Duplicates.Add(CurrentNode);
+                        return true;
+                    }                    
+                }
                 Level++;
                
             }            
@@ -71,13 +78,54 @@
         }
         public bool Remove(Node<T> node)
         {
+            if (node == null)
+            {
+                return false;
+            }
+            
+            List<Node<T>> toRemove = Find(node);
+            
+            if (toRemove == null || toRemove.Count == 0)
+            {
+                return false;
+            }
+            if (toRemove.Count > 1)
+            {
+
+            }
+            if (toRemove.Count == 1)
+            {
+                Node<T> nodeToRemove = toRemove[0];
+                if (nodeToRemove.Left == null && node.Right == null) 
+                {
+                    nodeToRemove.Parent = null;
+                    return true;
+                } else
+                {
+                    Node<T> parent = nodeToRemove.Parent;
+                    if (parent.Left == nodeToRemove)
+                    {
+                        parent.Left = null;
+                    }
+                    else
+                    {
+                        parent.Right = null;
+                    }
+                    nodeToRemove.Parent = null;
+                    return true;
+                }
+            } else
+            {
+
+            }
+
             return false;
         }
-        public bool Find(Node<T> node)
+        public List<Node<T>> Find(Node<T> node)
         {
             if (node == null || Root == null)
             {
-                return false;
+                return new List<Node<T>>();
             }
 
             CurrentNode = Root;
@@ -88,7 +136,7 @@
             {
                 if (CurrentNode == null)
                 {
-                    return false;
+                    return new List<Node<T>>();
                 }
 
                 comparison = CurrentNode.Key.Compare(node.Key, Level);
@@ -105,10 +153,22 @@
                     continue;
                 } else
                 {
-                    return true;
+                    if (node.Duplicates != null)
+                    {
+                        //Return all duplicates of node and actual node                        
+                        List<Node<T>> tempList = new List<Node<T>>();
+                        tempList.Add(node);
+                        foreach (Node<T> property in node.Duplicates)
+                        {
+                            tempList.Add(property);
+                        }
+                        return tempList;
+
+                    }
+                    return new List<Node<T>>() { node };
                 }
             }
-            return true;
+            return new List<Node<T>>() { node };
         }
     }
 }

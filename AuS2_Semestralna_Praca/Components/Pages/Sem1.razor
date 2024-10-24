@@ -1,6 +1,46 @@
 ﻿@page "/Sem1"
 @using Semestralna_Praca1
-
+@using MudBlazor
 
 <PageTitle>Semestralna praca - 1. cast</PageTitle>
+
+<MudContainer>
+    <MudPaper>
+        <MudList ReadOnly T="String">
+            <MudContainer>
+                <div style="grid-row">                
+                    <MudListItem Text="Find Real Estate"></MudListItem>
+                    <div>
+                        <MudTextField></MudTextField>
+                    </div>
+                </div>
+                <div>
+                    <MudListItem Text="Find Lot"></MudListItem>                
+                </div>
+                <div>
+                    <MudListItem Text="Find Record"></MudListItem>
+                </div>
+            </MudContainer>
+            <MudDivider/>
+             <MudContainer>
+                <MudListItem Text="Add Real Estate"></MudListItem>
+                <MudListItem Text="Add Lot"></MudListItem>
+             </MudContainer>
+             <MudDivider />
+             <MudContainer>
+                <MudListItem Text="Edit Real Estate"></MudListItem>
+                <MudListItem Text="Edit Lot"></MudListItem>
+             </MudContainer>
+            <MudDivider/>
+             <MudContainer>
+                <MudListItem Text="Delete Real Estate"></MudListItem>
+                <MudListItem Text="Delete Lot"></MudListItem>
+             </MudContainer>
+        </MudList>
+    </MudPaper>
+</MudContainer>
+<MudContainer>
+
+</MudContainer>
+
 

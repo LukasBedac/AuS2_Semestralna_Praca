@@ -1,22 +1,16 @@
 ﻿namespace Semestralna_Praca1
 {
-    public class Lot
+    public class Lot : Property
     {
+        public int ID { get; set; }
         public int LotNumber { get; set; }
         public string Description { get; set; }
         public List<RealEstate> RealEstatesList { get; set; }
         public List<GPS> GPSCoords { get; set; }
 
-        public RealEstate RealEstate
+        public Lot(int Id)
         {
-            get => default;
-            set
-            {
-            }
-        }
-
-        public Lot()
-        {
+            ID = Id;
             GPSCoords = new List<GPS>();
             RealEstatesList = new List<RealEstate>();
             Description = string.Empty;

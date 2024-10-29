@@ -7,7 +7,7 @@ namespace Semestralna_Praca1
         public Node<T>? Parent { get; set; }
         public Node<T>? Right { get; set; }
         public Node<T>? Left { get; set; }
-        public T? Data { get; set; }        
+        public T Data { get; set; }        
         public Key Key { get; set; }
         public List<Node<T>> Duplicates { get; set; }
         public Node(T data, Key key)

@@ -7,7 +7,7 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "AuS2_Semestralna_Praca", "A
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Semestralna_Praca1", "Semestralna_Praca1\Semestralna_Praca1.csproj", "{26E64F58-46AF-4826-B66A-24AE77A517BF}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "GUIAuS2", "GUIAuS2\GUIAuS2.csproj", "{C1615D71-D7AB-4FF3-9CC1-8B717A47DA18}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "GUIAuS2", "GUIAuS2\GUIAuS2.csproj", "{C1615D71-D7AB-4FF3-9CC1-8B717A47DA18}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution

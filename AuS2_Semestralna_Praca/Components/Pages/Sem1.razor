@@ -1,46 +1,123 @@
 ﻿@page "/Sem1"
 @using Semestralna_Praca1
 @using MudBlazor
+@using System.ComponentModel.DataAnnotations;
 
-<PageTitle>Semestralna praca - 1. cast</PageTitle>
+<PageTitle>Semestral work - 1. part</PageTitle>
+<div>
+    <EditForm Model="@Property">
+        <MudGrid>
+            <MudItem xs="12" sm="8">
+                    <DataAnnotationsValidator />
+                    <MudPaper Class="pa-4">
+                        <MudText Typo="Typo.h5" GutterBottom>Enter Property Details</MudText>
+                        <MudGrid>
+                            <MudItem xs="12" sm="6">
+                                <MudTextField T="string" Label="Name of property" />
+                            </MudItem>
+                            <MudItem xs="12" sm="6">
+                            <MudTextField T="string" Label="Number of property" />
+                            </MudItem>
+                        <MudItem xs="12" sm="6">
+                            <MudTextField T="double" Label="First GPS - latitude" />
+                            <MudText Typo="Typo.caption">Instead of typing N/S, write +/-</MudText>
+                        </MudItem>
+                        <MudItem xs="12" sm="6">
+                            <MudTextField T="double" Label="Second GPS - longtitude" />
+                            <MudText Typo="Typo.caption">Instead of typing E/W, write +/-</MudText>
+                        </MudItem>
+                            <MudItem xs="12">
+                                <MudText Typo="Typo.subtitle2" Align="Align.Center" Color="Color.Primary">
+                                    In this part, you can insert two GPS coords to locate the property and then you click on button you want to use for now.
+                                </MudText>
+                            </MudItem>
+                        </MudGrid>
+                    </MudPaper>
+                    <br/>
+                <MudItem >
+                    <MudPaper Class="pa-4">
+                        <MudField T>RESULTS</MudField>
+                    </MudPaper>
+                </MudItem>
+            </MudItem>
 
-<MudContainer>
-    <MudPaper>
-        <MudList ReadOnly T="String">
-            <MudContainer>
-                <div style="grid-row">                
-                    <MudListItem Text="Find Real Estate"></MudListItem>
-                    <div>
-                        <MudTextField></MudTextField>
+            <MudItem xs="12" sm="4">
+                <MudPaper Class="pa-4">
+                    <MudText Typo="Typo.h5" GutterBottom>Operations - Find</MudText>
+                    <MudButtonGroup Variant="Variant.Filled" Color="Color.Primary" Vertical="true">
+                        <MudButton ButtonType="ButtonType.Submit" OnClick="FindRealEstate">Find Real Estate</MudButton>
+                        <MudButton ButtonType="ButtonType.Submit" OnClick="FindLot">Find Lot</MudButton>
+                        <MudButton ButtonType="ButtonType.Submit" OnClick="FindProperty">Find Property</MudButton>
+                    </MudButtonGroup>
+                </MudPaper>
+
+                <MudPaper Class="pa-4 mt-4">
+                    <MudText Typo="Typo.h5" GutterBottom>Operations - Edit</MudText>
+                    <MudButtonGroup Variant="Variant.Filled" Color="Color.Primary" Vertical="true">
+                        <MudButton ButtonType="ButtonType.Submit" OnClick="EditRealEstate">Edit Real Estate</MudButton>
+                        <MudButton ButtonType="ButtonType.Submit" OnClick="EditLot">Edit Lot</MudButton>
+                    </MudButtonGroup>
+                </MudPaper>
+
+                <MudPaper Class="pa-4 mt-4">
+                    <MudText Typo="Typo.h5" GutterBottom>Operations - Add</MudText>
+                    <MudButtonGroup Variant="Variant.Filled" Color="Color.Primary" Vertical="true">
+                        <MudButton ButtonType="ButtonType.Submit" OnClick="AddRealEstate">Add Real Estate</MudButton>
+                        <MudButton ButtonType="ButtonType.Submit" OnClick="AddLot">Add Lot</MudButton>
+                    </MudButtonGroup>
+                </MudPaper>
+
+                <MudPaper Class="pa-4 mt-4">
+                    <MudText Typo="Typo.h5" GutterBottom>Operations - Delete</MudText>
+                    <MudButtonGroup Variant="Variant.Filled" Color="Color.Primary" Vertical="true">
+                        <MudButton ButtonType="ButtonType.Submit" OnClick="DeleteRealEstate">Delete Real Estate</MudButton>
+                        <MudButton ButtonType="ButtonType.Submit" OnClick="DeleteLot">Delete Lot</MudButton>
+                    </MudButtonGroup>
+                </MudPaper>
+            </MudItem>
+        </MudGrid>
+    </EditForm>    
+</div>
+
+
+<!--<div style="left-grid">
+    <MudContainer>
+        <MudPaper>
+            <MudList ReadOnly T="String">
+                <MudContainer>
+                    <div style="">                
+                        <MudListItem Text="Find Real Estate"></MudListItem>
+                        <div>
+                            <MudTextField Label="Enter GPS"></MudTextField>
+                            <MudField></MudField>
+                        </div>
                     </div>
-                </div>
-                <div>
-                    <MudListItem Text="Find Lot"></MudListItem>                
-                </div>
-                <div>
-                    <MudListItem Text="Find Record"></MudListItem>
-                </div>
-            </MudContainer>
-            <MudDivider/>
-             <MudContainer>
-                <MudListItem Text="Add Real Estate"></MudListItem>
-                <MudListItem Text="Add Lot"></MudListItem>
-             </MudContainer>
-             <MudDivider />
-             <MudContainer>
-                <MudListItem Text="Edit Real Estate"></MudListItem>
-                <MudListItem Text="Edit Lot"></MudListItem>
-             </MudContainer>
-            <MudDivider/>
-             <MudContainer>
-                <MudListItem Text="Delete Real Estate"></MudListItem>
-                <MudListItem Text="Delete Lot"></MudListItem>
-             </MudContainer>
-        </MudList>
-    </MudPaper>
-</MudContainer>
-<MudContainer>
-
-</MudContainer>
+                    <div>
+                        <MudListItem Text="Find Lot"></MudListItem>                
+                    </div>
+                    <div>
+                        <MudListItem Text="Find Record"></MudListItem>
+                    </div>
+                </MudContainer>
+                <MudDivider/>
+                 <MudContainer>
+                    <MudListItem Text="Add Real Estate"></MudListItem>
+                    <MudListItem Text="Add Lot"></MudListItem>
+                 </MudContainer>
+                 <MudDivider />
+                 <MudContainer>
+                    <MudListItem Text="Edit Real Estate"></MudListItem>
+                    <MudListItem Text="Edit Lot"></MudListItem>
+                 </MudContainer>
+                <MudDivider/>
+                 <MudContainer>
+                    <MudListItem Text="Delete Real Estate"></MudListItem>
+                    <MudListItem Text="Delete Lot"></MudListItem>
+                 </MudContainer>
+            </MudList>
+        </MudPaper>
+    </MudContainer>
+</div>
+-->
 
 

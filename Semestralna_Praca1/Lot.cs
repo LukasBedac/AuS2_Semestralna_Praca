@@ -14,6 +14,11 @@
             GPSCoords = new List<GPS>();
             RealEstatesList = new List<RealEstate>();
             Description = string.Empty;
-        }              
+        }
+
+        public override string ToString()
+        {
+            return ID.ToString();
+        }
     }
 }

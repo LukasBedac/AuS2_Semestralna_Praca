@@ -15,5 +15,10 @@
             LotsList = new List<Lot>();
             Description = string.Empty;
         }
+
+        public override string ToString()
+        {
+            return ID.ToString();
+        }
     }
 }

@@ -2,5 +2,5 @@
 using Semestralna_Praca1;
 
 DataGenAndTest test = new DataGenAndTest();
-test.CreateRealEstateTree();
-test.CreateLotTree();
+test.GenerateData();
+test.CreateTrees();

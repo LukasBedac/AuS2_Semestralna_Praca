@@ -10,6 +10,7 @@ namespace Semestralna_Praca1
     {
         public double X { get; set; }
         public double Y { get; set; }
+
         public int Compare(DataKey data, int level)
         {
             if (data == null)
@@ -69,13 +70,12 @@ namespace Semestralna_Praca1
             if (data is AppKey)
             {
                 AppKey key = (AppKey)data;
-                if (this.X == key.X && this.Y == key.Y)
+                if (this.X == key.X)
                 {
-                    return true;
-                }
-                else
-                {
-                    return false;
+                    if (this.Y == key.Y)
+                    {
+                        return true;
+                    }
                 }
             }
             return false;

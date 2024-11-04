@@ -2,9 +2,9 @@
 {
     public class GPS
     {
-        public char Latitude { get; set; } 
+        public string Latitude { get; set; } 
         public double LatitudeCoord { get; set; }
-        public char Longtitude { get; set; }
+        public string Longtitude { get; set; }
         public double LongtitudeCoord { get; set; }
     } 
 }

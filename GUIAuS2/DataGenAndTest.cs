@@ -1,18 +1,16 @@
 ﻿using Semestralna_Praca1;
+using GUIAuS2;
 namespace Semestralna_Praca1
 {
     public class DataGenAndTest
     {
-        private const int NUMBEROFPROPERTIES = 10000;
-        private const int REALESTATESNUMBER = 20000;
-        private const int LOTSNUMBER = 20000;
-        private Lot lotToFind;
+        
+        /*private Lot lotToFind;
         private TestKey keyToFind;
         private Property deleteProp;
         private TestKey deleteKey;
         private Lot root;
         private TestKey rootKey;
-        private List<char> chars = new List<char>();
         private Random randGPS = new Random();
         private Random randMethod = new Random();
         private Random randProp = new Random();
@@ -41,13 +39,13 @@ namespace Semestralna_Praca1
 
                 GPS gps1 = new GPS();
                 GPS gps2 = new GPS();
-                gps1.Latitude = rand.NextDouble() < 0.5 ? gps1.Latitude = 'N' : gps1.Latitude = 'S';
-                gps1.Longtitude = rand.NextDouble() < 0.5 ? gps1.Longtitude = 'E' : gps1.Longtitude = 'W';
+                gps1.Latitude = rand.NextDouble() < 0.5 ? gps1.Latitude = "N" : gps1.Latitude = "S";
+                gps1.Longtitude = rand.NextDouble() < 0.5 ? gps1.Longtitude = "E" : gps1.Longtitude = "W";
                 gps1.LatitudeCoord = rand.NextDouble();
                 gps1.LongtitudeCoord = rand.NextDouble();
 
-                gps2.Latitude = rand.NextDouble() < 0.5 ? gps2.Latitude = 'N' : gps2.Latitude = 'S';
-                gps2.Longtitude = rand.NextDouble() < 0.5 ? gps2.Longtitude = 'E' : gps2.Longtitude = 'W';
+                gps2.Latitude = rand.NextDouble() < 0.5 ? gps2.Latitude = "N" : gps2.Latitude = "S";
+                gps2.Longtitude = rand.NextDouble() < 0.5 ? gps2.Longtitude = "E" : gps2.Longtitude = "W";
                 gps2.LatitudeCoord = rand.NextDouble();
                 gps2.LongtitudeCoord = rand.NextDouble();
 
@@ -62,8 +60,8 @@ namespace Semestralna_Praca1
                 }
                 else
                 {
-                    key.X = 'N'.Equals(estate.GPSCoords[0].Latitude) ? estate.GPSCoords[0].LatitudeCoord : -estate.GPSCoords[0].LatitudeCoord;
-                    key.Y = 'E'.Equals(estate.GPSCoords[0].LongtitudeCoord) ? estate.GPSCoords[0].LongtitudeCoord : -estate.GPSCoords[0].LongtitudeCoord;
+                    key.X = "N".Equals(estate.GPSCoords[0].Latitude) ? estate.GPSCoords[0].LatitudeCoord : -estate.GPSCoords[0].LatitudeCoord;
+                    key.Y = "E".Equals(estate.GPSCoords[0].LongtitudeCoord) ? estate.GPSCoords[0].LongtitudeCoord : -estate.GPSCoords[0].LongtitudeCoord;
                 }
                 if (i == 0)
                 {
@@ -73,8 +71,8 @@ namespace Semestralna_Praca1
 
                 if (i == 0)
                 {
-                    ReTree = new KDTree<TestKey, Property>(key, estate);
-                    AllTree = new KDTree<TestKey, Property>(key, estate);
+                    ReTree = new KDTree<TestKey, Property>(key, estate, 4);
+                    AllTree = new KDTree<TestKey, Property>(key, estate, 4);
                     inserted.Add(estate);
                     keys.Add(key);
                 }
@@ -100,13 +98,13 @@ namespace Semestralna_Praca1
 
                 GPS gps1 = new GPS();
                 GPS gps2 = new GPS();
-                gps1.Latitude = rand.NextDouble() < 0.5 ? gps1.Latitude = 'N' : gps1.Latitude = 'S';
-                gps1.Longtitude = rand.NextDouble() < 0.5 ? gps1.Longtitude = 'E' : gps1.Longtitude = 'W';
+                gps1.Latitude = rand.NextDouble() < 0.5 ? gps1.Latitude = "N" : gps1.Latitude ="S";
+                gps1.Longtitude = rand.NextDouble() < 0.5 ? gps1.Longtitude = "E" : gps1.Longtitude = "W";
                 gps1.LatitudeCoord = rand.NextDouble();
                 gps1.LongtitudeCoord = rand.NextDouble();
 
-                gps2.Latitude = rand.NextDouble() < 0.5 ? gps2.Latitude = 'N' : gps2.Latitude = 'S';
-                gps2.Longtitude = rand.NextDouble() < 0.5 ? gps2.Longtitude = 'E' : gps2.Longtitude = 'W';
+                gps2.Latitude = rand.NextDouble() < 0.5 ? gps2.Latitude = "N" : gps2.Latitude = "S";
+                gps2.Longtitude = rand.NextDouble() < 0.5 ? gps2.Longtitude = "E" : gps2.Longtitude = "W";
                 gps2.LatitudeCoord = rand.NextDouble();
                 gps2.LongtitudeCoord = rand.NextDouble();
 
@@ -114,8 +112,8 @@ namespace Semestralna_Praca1
                 lot.GPSCoords.Add(gps1);
                 lot.GPSCoords.Add(gps2);
                 TestKey key = new TestKey();
-                key.X = 'N'.Equals(lot.GPSCoords[0].Latitude) ? lot.GPSCoords[0].LatitudeCoord : -lot.GPSCoords[0].LatitudeCoord;
-                key.Y = 'E'.Equals(lot.GPSCoords[0].LongtitudeCoord) ? lot.GPSCoords[0].LongtitudeCoord : -lot.GPSCoords[0].LongtitudeCoord;
+                key.X = "N".Equals(lot.GPSCoords[0].Latitude) ? lot.GPSCoords[0].LatitudeCoord : -lot.GPSCoords[0].LatitudeCoord;
+                key.Y = "E".Equals(lot.GPSCoords[0].LongtitudeCoord) ? lot.GPSCoords[0].LongtitudeCoord : -lot.GPSCoords[0].LongtitudeCoord;
                 if (rand.NextDouble() < 0.3)
                 {
                     lotToFind = lot;
@@ -123,7 +121,7 @@ namespace Semestralna_Praca1
                 }
                 if (i == REALESTATESNUMBER + 1)
                 {
-                    LotTree = new KDTree<TestKey, Property>(key, lot);
+                    LotTree = new KDTree<TestKey, Property>(key, lot, 4);
                     AllTree.Insert(lot, key);
                     list.Add(lot);
                     inserted.Add(lot);
@@ -144,7 +142,7 @@ namespace Semestralna_Praca1
                     keys.Add(key);
                 }
             }
-          /* // tree.Remove(root, rootKey);
+          *//* // tree.Remove(root, rootKey);
             for (int i = 0; i < NUMBEROFPROPERTIES - 1; i++)
             {
                 int find = rand.Next(list.Count);
@@ -169,7 +167,7 @@ namespace Semestralna_Praca1
                 TestKey propKey = keys[i];
                 Lot newLot = tree.Find((Lot)prop, propKey);
                 
-            }*/
+            }*//*
            
         }
         //TODO 1.2 Implement methods for inserting, finding and deleting
@@ -179,13 +177,13 @@ namespace Semestralna_Praca1
             {
                 GPS gps1 = new GPS();
                 GPS gps2 = new GPS();
-                gps1.Latitude = randGPS.NextDouble() < 0.5 ? gps1.Latitude = 'N' : gps1.Latitude = 'S';
-                gps1.Longtitude = randGPS.NextDouble() < 0.5 ? gps1.Longtitude = 'E' : gps1.Longtitude = 'W';
+                gps1.Latitude = randGPS.NextDouble() < 0.5 ? gps1.Latitude = "N" : gps1.Latitude ="S";
+                gps1.Longtitude = randGPS.NextDouble() < 0.5 ? gps1.Longtitude = "E" : gps1.Longtitude = "W";
                 gps1.LatitudeCoord = randGPS.NextDouble();
                 gps1.LongtitudeCoord = randGPS.NextDouble();
 
-                gps2.Latitude = randGPS.NextDouble() < 0.5 ? gps2.Latitude = 'N' : gps2.Latitude = 'S';
-                gps2.Longtitude = randGPS.NextDouble() < 0.5 ? gps2.Longtitude = 'E' : gps2.Longtitude = 'W';
+                gps2.Latitude = randGPS.NextDouble() < 0.5 ? gps2.Latitude = "N" : gps2.Latitude = "S";
+                gps2.Longtitude = randGPS.NextDouble() < 0.5 ? gps2.Longtitude = "E" : gps2.Longtitude = "W";
                 gps2.LatitudeCoord = randGPS.NextDouble();
                 gps2.LongtitudeCoord = randGPS.NextDouble();
                 if (i == 0)
@@ -193,8 +191,8 @@ namespace Semestralna_Praca1
                     ReRoot = new RealEstate(0);
                     ReRoot.GPSCoords.Add(gps1);
                     ReRoot.GPSCoords.Add(gps2);
-                    ReRootKey.X = 'N'.Equals(ReRoot.GPSCoords[0].Latitude) ? ReRoot.GPSCoords[0].LatitudeCoord : -ReRoot.GPSCoords[0].LatitudeCoord;
-                    ReRootKey.Y = 'E'.Equals(ReRoot.GPSCoords[0].LongtitudeCoord) ? ReRoot.GPSCoords[0].LongtitudeCoord : -ReRoot.GPSCoords[0].LongtitudeCoord;
+                    ReRootKey.X = "N".Equals(ReRoot.GPSCoords[0].Latitude) ? ReRoot.GPSCoords[0].LatitudeCoord : -ReRoot.GPSCoords[0].LatitudeCoord;
+                    ReRootKey.Y = "E".Equals(ReRoot.GPSCoords[0].LongtitudeCoord) ? ReRoot.GPSCoords[0].LongtitudeCoord : -ReRoot.GPSCoords[0].LongtitudeCoord;
                     int numberOfChars = randChars.Next(10);
                     string stringKey = "";
                     for (int k = 0; k < numberOfChars; k++)
@@ -209,8 +207,8 @@ namespace Semestralna_Praca1
                     LotRoot = new Lot(1);
                     LotRoot.GPSCoords.Add(gps1);
                     LotRoot.GPSCoords.Add(gps2);
-                    LoteRootKey.X = 'N'.Equals(ReRoot.GPSCoords[0].Latitude) ? ReRoot.GPSCoords[0].LatitudeCoord : -ReRoot.GPSCoords[0].LatitudeCoord;
-                    LoteRootKey.Y = 'E'.Equals(ReRoot.GPSCoords[0].LongtitudeCoord) ? ReRoot.GPSCoords[0].LongtitudeCoord : -ReRoot.GPSCoords[0].LongtitudeCoord;
+                    LoteRootKey.X = "N".Equals(ReRoot.GPSCoords[0].Latitude) ? ReRoot.GPSCoords[0].LatitudeCoord : -ReRoot.GPSCoords[0].LatitudeCoord;
+                    LoteRootKey.Y = "E".Equals(ReRoot.GPSCoords[0].LongtitudeCoord) ? ReRoot.GPSCoords[0].LongtitudeCoord : -ReRoot.GPSCoords[0].LongtitudeCoord;
                     int numberOfChars = randChars.Next(10);
                     string stringKey = "";
                     for (int k = 0; k < numberOfChars; k++)
@@ -229,8 +227,8 @@ namespace Semestralna_Praca1
         private GPS CreateGPS()
         {
             GPS gps = new GPS();
-            gps.Latitude = randGPS.NextDouble() < 0.5 ? gps.Latitude = 'N' : gps.Latitude = 'S';
-            gps.Longtitude = randGPS.NextDouble() < 0.5 ? gps.Longtitude = 'E' : gps.Longtitude = 'W';
+            gps.Latitude = randGPS.NextDouble() < 0.5 ? gps.Latitude = "N" : gps.Latitude = "S";
+            gps.Longtitude = randGPS.NextDouble() < 0.5 ? gps.Longtitude = "E" : gps.Longtitude = "W";
             gps.LatitudeCoord = randGPS.NextDouble();
             gps.LongtitudeCoord = randGPS.NextDouble();
             return gps;
@@ -239,7 +237,7 @@ namespace Semestralna_Praca1
         
         private void CreateRealEstate()
         {
-          /*  RealEstate re = new RealEstate();
+          *//*  RealEstate re = new RealEstate();
             ReRoot = new RealEstate(0);
             ReRoot.GPSCoords.Add(gps1);
             ReRoot.GPSCoords.Add(gps2);
@@ -253,7 +251,7 @@ namespace Semestralna_Praca1
                 stringKey += chars[randChars.Next(chars.Count())];
             }
             ReRootKey.B = stringKey;
-            ReRootKey.C = randInteger.Next(NUMBEROFPROPERTIES);*/
+            ReRootKey.C = randInteger.Next(NUMBEROFPROPERTIES);*//*
         }
         private void CreateLot()
         {
@@ -261,6 +259,7 @@ namespace Semestralna_Praca1
         }
         public void CreateTrees()
         {
+            GenerateData();
             CreateRealEstateTree();
             CreateLotTree();
  
@@ -284,13 +283,13 @@ namespace Semestralna_Praca1
                         TestKey key = new TestKey();
                         GPS gps1 = new GPS();
                         GPS gps2 = new GPS();
-                        gps1.Latitude = randGPS.NextDouble() < 0.5 ? gps1.Latitude = 'N' : gps1.Latitude = 'S';
-                        gps1.Longtitude = randGPS.NextDouble() < 0.5 ? gps1.Longtitude = 'E' : gps1.Longtitude = 'W';
+                        gps1.Latitude = randGPS.NextDouble() < 0.5 ? gps1.Latitude = "N" : gps1.Latitude = "S";
+                        gps1.Longtitude = randGPS.NextDouble() < 0.5 ? gps1.Longtitude = "E" : gps1.Longtitude = "W";
                         gps1.LatitudeCoord = randGPS.NextDouble();
                         gps1.LongtitudeCoord = randGPS.NextDouble();
 
-                        gps2.Latitude = randGPS.NextDouble() < 0.5 ? gps2.Latitude = 'N' : gps2.Latitude = 'S';
-                        gps2.Longtitude = randGPS.NextDouble() < 0.5 ? gps2.Longtitude = 'E' : gps2.Longtitude = 'W';
+                        gps2.Latitude = randGPS.NextDouble() < 0.5 ? gps2.Latitude = "N" : gps2.Latitude = "S";
+                        gps2.Longtitude = randGPS.NextDouble() < 0.5 ? gps2.Longtitude = "E" : gps2.Longtitude = "W";
                         gps2.LatitudeCoord = randGPS.NextDouble();
                         gps2.LongtitudeCoord = randGPS.NextDouble();
                         re.GPSCoords.Add(gps1);
@@ -316,13 +315,13 @@ namespace Semestralna_Praca1
                         TestKey key = new TestKey();
                         GPS gps1 = new GPS();
                         GPS gps2 = new GPS();
-                        gps1.Latitude = randGPS.NextDouble() < 0.5 ? gps1.Latitude = 'N' : gps1.Latitude = 'S';
-                        gps1.Longtitude = randGPS.NextDouble() < 0.5 ? gps1.Longtitude = 'E' : gps1.Longtitude = 'W';
+                        gps1.Latitude = randGPS.NextDouble() < 0.5 ? gps1.Latitude = "N" : gps1.Latitude = "S";
+                        gps1.Longtitude = randGPS.NextDouble() < 0.5 ? gps1.Longtitude = "E" : gps1.Longtitude = "W";
                         gps1.LatitudeCoord = randGPS.NextDouble();
                         gps1.LongtitudeCoord = randGPS.NextDouble();
 
-                        gps2.Latitude = randGPS.NextDouble() < 0.5 ? gps2.Latitude = 'N' : gps2.Latitude = 'S';
-                        gps2.Longtitude = randGPS.NextDouble() < 0.5 ? gps2.Longtitude = 'E' : gps2.Longtitude = 'W';
+                        gps2.Latitude = randGPS.NextDouble() < 0.5 ? gps2.Latitude = "N" : gps2.Latitude = "S";
+                        gps2.Longtitude = randGPS.NextDouble() < 0.5 ? gps2.Longtitude = "E" : gps2.Longtitude = "W";
                         gps2.LatitudeCoord = randGPS.NextDouble();
                         gps2.LongtitudeCoord = randGPS.NextDouble();
                         lot.GPSCoords.Add(gps1);
@@ -334,8 +333,8 @@ namespace Semestralna_Praca1
 
                             stringKey += chars[randChars.Next(chars.Count())];
                         }
-                        key.X = 'N'.Equals(lot.GPSCoords[0].Latitude) ? lot.GPSCoords[0].LatitudeCoord : -lot.GPSCoords[0].LatitudeCoord;
-                        key.Y = 'E'.Equals(lot.GPSCoords[0].LongtitudeCoord) ? lot.GPSCoords[0].LongtitudeCoord : -lot.GPSCoords[0].LongtitudeCoord;
+                        key.X = "N".Equals(lot.GPSCoords[0].Latitude) ? lot.GPSCoords[0].LatitudeCoord : -lot.GPSCoords[0].LatitudeCoord;
+                        key.Y = "E".Equals(lot.GPSCoords[0].LongtitudeCoord) ? lot.GPSCoords[0].LongtitudeCoord : -lot.GPSCoords[0].LongtitudeCoord;
                         key.B = stringKey;
                         key.C = randInteger.Next();
                         tree.Insert(lot, key);
@@ -349,9 +348,10 @@ namespace Semestralna_Praca1
                 {
                     int find = randProp.Next(inserted.Count() - 1);
                     Property prop = inserted[find];
-                    Property found;
+                    List<Property> found;
                     TestKey key = (TestKey)keys[find];
                     found = AllTree.Find(prop, key);
+                    
                     if (found != null)
                     {
                         Console.WriteLine("Find: " + prop.ToString());
@@ -377,13 +377,16 @@ namespace Semestralna_Praca1
                         oneTreeBool = LotTree.Remove(prop, key);
                     }
                     bool allBool = AllTree.Remove(prop, key);
+                    if(allBool == false && oneTreeBool == false) {
+                        allBool = AllTree.Remove(prop, key);
+                    }
                     Console.WriteLine("Deleted property: " + prop.ToString());
                     Console.WriteLine("Deleted in tree: " + oneTreeBool + " and in allTree: " + allBool);
                     inserted.Remove(prop);
                     keys.Remove(key);
                 }                
             }
-            /*CreateRoots();
+            *//*CreateRoots();
             KDTree<TestKey, Property> ReTree = new KDTree<TestKey, Property>(ReRootKey, ReRoot);
             KDTree<TestKey, Property> LotTree = new KDTree<TestKey, Property>(LoteRootKey, LotRoot);
             KDTree<TestKey, Property> AllTree = new KDTree<TestKey, Property>(ReRootKey, ReRoot);
@@ -414,7 +417,7 @@ namespace Semestralna_Praca1
                 {
 
                 }
-            }*/
+            }*//*
         }
         public void Insert()
         {
@@ -428,22 +431,10 @@ namespace Semestralna_Praca1
         {
             //tree.Remove((Lot)deleteProp, key);
         }
-        //TODO 1.1 Data generation
         public void GenerateData()
         {
 
-            // Add uppercase letters
-            for (char c = 'A'; c <= 'Z'; c++)
-            {
-                chars.Add(c);
-            }
-
-            // Add lowercase letters
-            for (char c = 'a'; c <= 'z'; c++)
-            {
-                chars.Add(c);
-            }
-            ;
-        }
+           
+        }*/
     }
 }

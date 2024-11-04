@@ -1,62 +1,54 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
-<ClassDiagram MajorVersion="1" MinorVersion="1">
+<ClassDiagram MajorVersion="1" MinorVersion="1" MembersFormat="FullSignature">
   <Class Name="Semestralna_Praca1.GPS">
-    <Position X="1" Y="0.5" Width="1.5" />
+    <Position X="2.25" Y="0.5" Width="1.5" />
     <TypeIdentifier>
-      <HashCode>BAAAAAAAAAAAAAAAAAQIAABAAAgAAAAAAAAAAAAAAgA=</HashCode>
+      <HashCode>AAAAAAAAAAAAAAAAAAQIAABAAAAAAAAAAAAAAAAAAgA=</HashCode>
       <FileName>GPS.cs</FileName>
     </TypeIdentifier>
-    <ShowAsAssociation>
-      <Property Name="Lot" />
-      <Property Name="RealEstate" />
-    </ShowAsAssociation>
   </Class>
   <Class Name="Semestralna_Praca1.KDTree&lt;Key, T&gt;">
-    <Position X="4.75" Y="2.5" Width="1.5" />
+    <Position X="9.25" Y="0.5" Width="1.5" />
     <TypeIdentifier>
-      <HashCode>AAAAAEAAAAgAACAAAAAABAAAAAAIAAABAAAAAEAAIAA=</HashCode>
+      <HashCode>AAAAAEACAAAAACAAAAAABAAAAAAJQAABQEAAAFAAAAA=</HashCode>
       <FileName>KDTree.cs</FileName>
     </TypeIdentifier>
   </Class>
-  <Class Name="Semestralna_Praca1.Lot">
-    <Position X="0.5" Y="2.75" Width="1.5" />
+  <Class Name="Semestralna_Praca1.Lot" BaseTypeListCollapsed="true">
+    <Position X="0.5" Y="0.5" Width="1.5" />
     <TypeIdentifier>
-      <HashCode>BAAAAAAAAAAgAAAAAAAAAAAAAAAAAAAAAAAAAgAAgAA=</HashCode>
+      <HashCode>AAAAAAAAAAAggAAEAAAAAAAAAAAAAAAAAAAAAgAAgAA=</HashCode>
       <FileName>Lot.cs</FileName>
     </TypeIdentifier>
-    <ShowAsAssociation>
-      <Property Name="RealEstate" />
-    </ShowAsAssociation>
+    <Lollipop Position="0.2" Collapsed="true" />
   </Class>
-  <Class Name="Semestralna_Praca1.Node&lt;T&gt;">
-    <Position X="6.5" Y="2.5" Width="1.5" />
+  <Class Name="Semestralna_Praca1.Node&lt;Key, T&gt;">
+    <Position X="7.5" Y="0.5" Width="1.5" />
     <TypeIdentifier>
-      <HashCode>AAAAAAAAAAAAAAQAAAAAQAAAAAAAABAACACAAAAAAAA=</HashCode>
+      <HashCode>AAAAAAEAAAAAAAAAAAAAwAAAAAAAABAACACAAAAAAAA=</HashCode>
       <FileName>Node.cs</FileName>
     </TypeIdentifier>
   </Class>
-  <Class Name="Semestralna_Praca1.RealEstate">
-    <Position X="3" Y="2.75" Width="1.5" />
+  <Class Name="Semestralna_Praca1.RealEstate" BaseTypeListCollapsed="true">
+    <Position X="5.75" Y="0.5" Width="1.5" />
     <TypeIdentifier>
-      <HashCode>AAAAAAAAACAgAAAAAAAIAAAAAAgAAAAAAAAAAAAAgAA=</HashCode>
+      <HashCode>AAAAAAAAACAggAAEAAAIAAAAAAAAAAAAAAAAAAAAgAA=</HashCode>
       <FileName>RealEstate.cs</FileName>
     </TypeIdentifier>
-    <ShowAsAssociation>
-      <Property Name="Lot" />
-    </ShowAsAssociation>
+    <Lollipop Position="0.2" Collapsed="true" />
   </Class>
-  <Class Name="Semestralna_Praca1.Key">
-    <Position X="7.5" Y="0.5" Width="1.5" />
+  <Class Name="Semestralna_Praca1.AppKey" BaseTypeListCollapsed="true">
+    <Position X="2.25" Y="2.25" Width="1.5" />
     <TypeIdentifier>
-      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAABAAAAAYAA=</HashCode>
-      <FileName>Key.cs</FileName>
+      <HashCode>AAAAAAAAAAAAAAAAgAAAAAAAAAAAAAAAAABAAAAAYAA=</HashCode>
+      <FileName>AppKey.cs</FileName>
     </TypeIdentifier>
-    <Lollipop Orientation="Left" Position="0.148" />
+    <Lollipop Orientation="Left" Position="0.148" Collapsed="true" />
   </Class>
   <Interface Name="Semestralna_Praca1.DataKey">
-    <Position X="5" Y="0.5" Width="1.5" />
+    <Position X="4" Y="0.5" Width="1.5" />
     <TypeIdentifier>
-      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAABAAAAAAAA=</HashCode>
+      <HashCode>AAAAAAAAAAAAAAAAgAAAAAAAAAAAAAAAAABAAAAAAAA=</HashCode>
       <FileName>DataKey.cs</FileName>
     </TypeIdentifier>
   </Interface>

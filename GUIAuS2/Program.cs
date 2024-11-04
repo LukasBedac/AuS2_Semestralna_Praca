@@ -1,6 +1,7 @@
 ﻿// See https://aka.ms/new-console-template for more information
+using GUIAuS2;
 using Semestralna_Praca1;
 
-DataGenAndTest test = new DataGenAndTest();
-test.GenerateData();
-test.CreateTrees();
+DataGenerator data = new DataGenerator();
+data.CreateTrees();
+data.FillTrees();

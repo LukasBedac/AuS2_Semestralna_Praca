@@ -1,0 +1,17 @@
+﻿@page "/Test"
+
+<div>
+    <EditForm Model="@Property">
+        <MudGrid>
+            <MudItem xl="20" sm="20" >
+                <MudPaper Class="pa-3" Width="80%" Elevation="5">                    
+                    <MudFab Color="Color.Secondary" StartIcon="@Icons.Material.Filled.BookmarkAdd" ButtonType="ButtonType.Submit" OnClick="GenerateData" Label="Generate Data"></MudFab>
+                    <MudFab Color="Color.Secondary" StartIcon="@Icons.Material.Filled.Terminal" ButtonType="ButtonType.Submit" OnClick="RunTest" Label="Run Test"></MudFab>
+                </MudPaper>          
+            </MudItem>
+        </MudGrid>
+    </EditForm>
+</div>
+
+
+

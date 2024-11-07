@@ -9,6 +9,8 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "GUIAuS2", "GUIAuS2\GUIAuS2.
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "AuS2_WebApp", "AuS2_WebApp\AuS2_WebApp.csproj", "{95C6F899-411B-44FB-85EB-2A0A5B2BADE2}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Semestralna_Praca2", "Semestralna_Praca2\Semestralna_Praca2.csproj", "{362A9508-278C-4873-AE74-FCC8988B334C}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -27,6 +29,10 @@ Global
 		{95C6F899-411B-44FB-85EB-2A0A5B2BADE2}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{95C6F899-411B-44FB-85EB-2A0A5B2BADE2}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{95C6F899-411B-44FB-85EB-2A0A5B2BADE2}.Release|Any CPU.Build.0 = Release|Any CPU
+		{362A9508-278C-4873-AE74-FCC8988B334C}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{362A9508-278C-4873-AE74-FCC8988B334C}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{362A9508-278C-4873-AE74-FCC8988B334C}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{362A9508-278C-4873-AE74-FCC8988B334C}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

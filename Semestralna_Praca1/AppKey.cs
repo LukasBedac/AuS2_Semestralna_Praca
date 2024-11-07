@@ -8,6 +8,7 @@ namespace Semestralna_Praca1
 {
     public class AppKey : DataKey
     {
+        private double Epsilon = 0.000001;
         public double X { get; set; }
         public double Y { get; set; }
 
@@ -22,32 +23,32 @@ namespace Semestralna_Praca1
                 AppKey key = (AppKey)data;
                 if (level % 2 == 0)
                 {
-                    if (this.X < key.X)
+                    if (Math.Abs(this.X - key.X) < Epsilon)
+                    {
+                        return 0; 
+                    }
+                    else if (this.X < key.X)
                     {
                         return -1;
-                    }
-                    else if (this.X > key.X)
-                    {
-                        return 1;
-                    } else
-                    {
-                        return 0;
-                    }
-                }
-                //C integer
-                else 
-                {
-                    if (this.Y < key.Y)
-                    {
-                        return -1;
-                    }
-                    else if (this.Y > key.Y)
-                    {
-                        return 1;
                     }
                     else
                     {
+                        return 1;
+                    }
+                }
+                else 
+                {
+                    if (Math.Abs(this.Y - key.Y) < Epsilon)
+                    {
                         return 0;
+                    }
+                    else if (this.Y < key.Y)
+                    {
+                        return -1;
+                    }
+                    else
+                    {
+                        return 1;
                     }
                 }                
             }
@@ -56,10 +57,7 @@ namespace Semestralna_Praca1
                 throw new Exception("Bad data send to comparer!");
             }
         }
-        public bool Compare(DataKey data)
-        {
-            throw new NotImplementedException();
-        }
+
 
         public bool Equals(DataKey data)
         {
@@ -68,7 +66,7 @@ namespace Semestralna_Praca1
                 throw new Exception("Bad data send to comparer!");
             }
             if (data is AppKey)
-            {
+            {                
                 AppKey key = (AppKey)data;
                 if (this.X == key.X)
                 {

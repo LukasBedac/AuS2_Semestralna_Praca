@@ -9,6 +9,8 @@ namespace GUIAuS2
 {    
     public class DataGenerator
     {
+        private static DataGenerator instance;
+
         public const int NUMBEROFPROPERTIES = REALESTATESNUMBER + LOTSNUMBER;
         public const int REALESTATESNUMBER = 10000;
         public const int LOTSNUMBER = 10000;
@@ -18,6 +20,14 @@ namespace GUIAuS2
         public KDTree<TestKey, Property> TreeLot { get; set; }
         public KDTree<TestKey, Property> TreeProperty { get; set; }
 
+        public List<Property> InsertedProps { get; set; } = new List<Property>();
+        public List<TestKey> InsertedKeys { get; set; } = new List<TestKey>();
+
+        private int duplicatesPercent;
+        public DataGenerator()
+        {                        
+
+        }
         public void CreateTrees()
         {
             Property realEstateRoot = new RealEstate();
@@ -35,7 +45,9 @@ namespace GUIAuS2
             TreeLot = new KDTree<TestKey, Property>(GenerateKey(lotRoot), lotRoot, DIMENSION);
 
             TreeProperty = new KDTree<TestKey, Property>(GenerateKey(realEstateRoot), realEstateRoot, DIMENSION);
-
+            InsertedProps.Add(realEstateRoot);
+            TreeProperty.Insert(lotRoot, GenerateKey(lotRoot));            
+            InsertedProps.Add(lotRoot);
         }
         public TestKey GenerateKey(Property prop)
         {
@@ -44,6 +56,7 @@ namespace GUIAuS2
             key.Y = "E".Equals(prop.GPSCoords[1].Longtitude) ? prop.GPSCoords[1].LongtitudeCoord : -prop.GPSCoords[1].LongtitudeCoord;
             key.B = KeyValuesGenerator.GetStringKey();
             key.C = KeyValuesGenerator.GetIntKey();
+            InsertedKeys.Add(key);
             return key;
         }
         
@@ -51,7 +64,7 @@ namespace GUIAuS2
         {
             bool inserted = false;
             bool isRealEstate = false;
-            int insertedCount = 1; //Add root
+            int insertedCount = 2; //Add root to each tree, but not the one for both objects
             for (int i = 0; i < NUMBEROFPROPERTIES; i++)
             {
                 if (i < NUMBEROFPROPERTIES - LOTSNUMBER)
@@ -75,11 +88,15 @@ namespace GUIAuS2
             }
             List<Node<TestKey, Property>> returned = TreeProperty.InOrder(TreeProperty.Root.Data, TreeProperty.Root.AppKey);
             Console.WriteLine("Inserted count: " + insertedCount);
-            Console.WriteLine("Returned inOreder count: " + returned.Count);
+            Console.WriteLine("Returned inOrder count: " + returned.Count);
         }
-        private bool Insert(KDTree<TestKey, Property> tree, bool isRealEstate)
+        public bool Insert(KDTree<TestKey, Property> tree, bool isRealEstate)
         {
             Property prop;
+            if (tree == null)
+            {
+                return false;
+            }
             if (isRealEstate)
             {
                 prop = new RealEstate();
@@ -91,10 +108,21 @@ namespace GUIAuS2
             prop.Description = PropNameGenerator.GetPropertyName();
             prop.Number = PropNumberGenerator.GetPropertyNumber();
             prop.ID = UniqueIDGenerator.GetUniqueID();
-            if (tree == null) {
-                return false;
+            if (tree.Equals(TreeProperty))
+            {
+                InsertedProps.Add(prop);
             }
+            Console.WriteLine("Coords to test: " + GenerateKey(prop).X + " , " + GenerateKey(prop).Y);
             return tree.Insert(prop, GenerateKey(prop));
+        }       
+
+        public static DataGenerator GetDataGenerator()
+        {
+            if (instance == null)
+            {
+                instance = new DataGenerator();
+            }
+            return instance;
         }
     }
 }

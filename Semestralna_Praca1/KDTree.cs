@@ -4,6 +4,12 @@ using System.Timers;
 
 namespace Semestralna_Praca1
 {
+    /*This class is for creating and managing K-D tree
+     * @param key - key of the root
+     * @param data - data of object of the root
+     * @param dimension - dimension of key secondary keys
+     */
+
     public class KDTree<Key, T> where Key : DataKey
     {    
         public KDTree(Key key, T data, int dimension) 
@@ -18,6 +24,11 @@ namespace Semestralna_Praca1
         public Node<Key, T> Root { get; set; }
         public Node<Key, T> CurrentNode { get; set; }
         public int Dimension { get; set; }
+        
+        /*Insert method for KD-tree
+         * @param data - data of object which will be inserted
+         * @param key - key of object which will be inserted
+         */
         public bool Insert(T data, Key key)
         {
             
@@ -31,7 +42,7 @@ namespace Semestralna_Praca1
             
             while (CurrentNode != null) 
             {
-                int comparison = CurrentNode.AppKey.Compare(node.AppKey, Level);                               
+                int comparison = node.AppKey.Compare(CurrentNode.AppKey, Level);                               
                 if (comparison == -1)
                 {
                     if (CurrentNode.Left == null)
@@ -61,7 +72,7 @@ namespace Semestralna_Praca1
                     }                 
                 } else
                 {
-                    if (CurrentNode.AppKey.Compare(node.AppKey))
+                    if (CurrentNode.Data.Equals(node.Data))
                     {
                         CurrentNode.Duplicates.Add(node);
                         node.Duplicates.Add(CurrentNode);
@@ -74,10 +85,14 @@ namespace Semestralna_Praca1
             return true;
             
         }
-        //TODO 1.5 Finish delete
+        /*Remove method of K-D tree
+         * @param data - data of object which will be removed
+         * @param key - key of object which will be removed
+         */
+
         public bool Remove(T data, Key key)
         {
-            if (data == null)
+            if (data == null || key == null)
             {
                 return false;
             }
@@ -91,7 +106,7 @@ namespace Semestralna_Praca1
             }
             Node<Key, T> nodeToRemove = toRemove[0];
             
-            if (toRemove.Count > 1)
+            /*if (toRemove.Count > 1)
             {
                 foreach(Node<Key, T> removing in toRemove)
                 {
@@ -107,62 +122,60 @@ namespace Semestralna_Praca1
                         }
                     }
                 }
-            }
-
-            if (toRemove.Count == 1) //TODO 1.7 change to while (duplicates)
-            {                
-                while (true)
+            }*/
+             
+            while (true)
+            {
+                if (nodeToRemove.Left == null && nodeToRemove.Right == null) 
                 {
-                    if (nodeToRemove.Left == null && nodeToRemove.Right == null) 
+                    //Console.WriteLine("Removing property: " + nodeToRemove.Data.ToString());
+                    Node<Key, T> parent = nodeToRemove.Parent;
+                    if (parent != null)
                     {
-                        //Console.WriteLine("Removing property: " + nodeToRemove.Data.ToString());
-                        Node<Key, T> parent = nodeToRemove.Parent;
-                        if (parent != null)
+                        if (parent.Left != null && parent.Left.Equals(nodeToRemove))
                         {
-                            if (parent.Left != null && parent.Left.Equals(nodeToRemove))
-                            {
-                                parent.Left = null;
-                            } else if (parent.Right != null && parent.Right.Equals(nodeToRemove)) 
-                            {
-                                parent.Right = null;
-                            }
-                        } else
+                            parent.Left = null;
+                        } else if (parent.Right != null && parent.Right.Equals(nodeToRemove)) 
                         {
-                            Root = null;
+                            parent.Right = null;
                         }
-                        nodeToRemove = null;
-                        return true;
-                    } 
-                    //Find max in left subtree
-                    if (nodeToRemove.Left != null)
-                    {
-                        Node<Key, T> returnedNode = FindMax(nodeToRemove.Left);
-                        if (returnedNode == null)
-                        {
-                            throw new Exception("Returned node from FindMax was null");
-                        } else
-                        {
-                            nodeToRemove = Swap(nodeToRemove, returnedNode);                            
-                        }
-                        
                     } else
                     {
-                        //Find min in right subtree
-                        Node<Key, T> returnedNode = FindMin(nodeToRemove.Right);
-                        if (returnedNode == null)
-                        {
-                            throw new Exception("Returned node from FindMin was null");
-                        }
-                        else
-                        {
-                            nodeToRemove = Swap(nodeToRemove, returnedNode);
-                        }
+                        Root = null;
+                    }
+                    nodeToRemove = null;
+                    return true;
+                } 
+                //Find max in left subtree
+                if (nodeToRemove.Left != null)
+                {
+                    Node<Key, T> returnedNode = FindMax(nodeToRemove.Left);
+                    if (returnedNode == null)
+                    {
+                        throw new Exception("Returned node from FindMax was null");
+                    } else
+                    {
+                        nodeToRemove = Swap(nodeToRemove, returnedNode);                            
+                    }
+                        
+                } else
+                {
+                    //Find min in right subtree
+                    Node<Key, T> returnedNode = FindMin(nodeToRemove.Right);
+                    if (returnedNode == null)
+                    {
+                        throw new Exception("Returned node from FindMin was null");
+                    }
+                    else
+                    {
+                        nodeToRemove = Swap(nodeToRemove, returnedNode);
                     }
                 }
             }
-            return false;
         }
-
+        /* Help method FidnMax for Remove method
+         * @param node - node determines which subtree is used from parent node
+         */
         private Node<Key, T> FindMax(Node<Key, T> node)
         {
             Node<Key, T> current = node;
@@ -186,71 +199,36 @@ namespace Semestralna_Praca1
                         return max;
                     }
                 }
-                if (current.Left != null)
+
+                // Update max if current node is greater than the previous max
+                if (current.AppKey.Compare(max.AppKey, level) == 1)
                 {
-                    int comparison = current.AppKey.Compare(current.Left.AppKey, level);
-                    if (comparison == -1)
-                    {
-                        current = current.Left;
-                        max = current;
-                    }
-                    else if (comparison == 1)
-                    {
-                        if (current.Right != null)
-                        {
-                            if (current.AppKey.Compare(current.Right.AppKey, level) == 1)
-                            {
-                                max = current;
-                                return max;
-                            }
-                            else
-                            {
-                                current = current.Right;
-                                max = current;
-                            }
-                        }
-                        else
-                        {
-                            max = current;
-                            return max;
-                        }
-                    }
+                    max = current;
                 }
-                if (current.Right != null)
+
+                // Check both subtrees if they exist and decide direction
+                if (current.Right != null && current.AppKey.Compare(current.Right.AppKey, level) == -1)
                 {
-                    int comparison = current.AppKey.Compare(current.Right.AppKey, level);
-                    if (comparison == -1)
-                    {
-                        current = current.Right;
-                        max = current;
-                    }
-                    else if (comparison == 1)
-                    {
-                        if (current.Left != null)
-                        {
-                            if (current.AppKey.Compare(current.Left.AppKey, level) == 1)
-                            {
-                                max = current;
-                                return max;
-                            }
-                            else
-                            {
-                                current = current.Left;
-                                max = current;
-                            }
-                        }
-                        else
-                        {
-                            max = current;
-                            return max;
-                        }
-                    }
+                    current = current.Right;
                 }
-                level++;
+                else if (current.Left != null && current.AppKey.Compare(current.Left.AppKey, level) == -1)
+                {
+                    current = current.Left;
+                }
+                else
+                {
+                    // If neither left nor right subtrees have greater nodes, stop
+                    break;
+                }
+
+                level++; // Increment level to switch dimensions
             }
+
             return max;
         }
-
+        /* Help method FindMin for Remove method
+         * @param node - node determines which subtree is used from parent node
+         */
         private Node<Key, T> FindMin(Node<Key, T> node)
         {
             Node<Key, T> current = node;
@@ -262,83 +240,35 @@ namespace Semestralna_Praca1
             }
             while (current != null)
             {
-                if (current.Left == null && current.Right == null)
+                // Update min if current node is smaller than the previous min
+                if (current.AppKey.Compare(min.AppKey, level) == -1)
                 {
-                    return current;
-                }
-                if (current.Left != null && current.Right != null)
-                {
-                    if (current.AppKey.Compare(current.Left.AppKey, level) == -1 && current.AppKey.Compare(current.Right.AppKey, level) == -1)
-                    {
-                        Level = level;
-                        return min;
-                    }
-                }
-                if (current.Left != null)
-                {
-                    int comparison = current.AppKey.Compare(current.Left.AppKey, level);
-                    if (comparison == 1)
-                    {
-                        current = current.Left;
-                        min = current;
-                    }
-                    else if (comparison == -1)
-                    {
-                        if (current.Right != null)
-                        {
-                            if (current.AppKey.Compare(current.Right.AppKey, level) == -1)
-                            {
-                                current = current.Right;
-                                min = current;
-                            }
-                            else
-                            {
-                                min = current;
-                                return min;
-                            }
-                        }
-                        else
-                        {
-                            min = current;
-                            return min;
-                        }
-                    }
+                    min = current;
                 }
 
-                if (current.Right != null)
+                // Check both subtrees if they exist and decide direction
+                if (current.Left != null && current.AppKey.Compare(current.Left.AppKey, level) == 1)
                 {
-                    int comparison = current.AppKey.Compare(current.Right.AppKey, level);
-                    if (comparison == 1)
-                    {
-                        current = current.Right;
-                        min = current;
-                    }
-                    else if (comparison == -1)
-                    {
-                        if (current.Left != null)
-                        {
-                            if (current.AppKey.Compare(current.Left.AppKey, level) == -1)
-                            {
-                                current = current.Left;
-                                min = current;
-                            }
-                            else
-                            {
-                                min = current;
-                                return min;
-                            }
-                        }
-                        else
-                        {
-                            min = current;
-                            return min;
-                        }
-                    }
+                    current = current.Left;
                 }
-                level++;
+                else if (current.Right != null && current.AppKey.Compare(current.Right.AppKey, level) == 1)
+                {
+                    current = current.Right;
+                }
+                else
+                {
+                    // If neither left nor right subtrees have smaller nodes, stop
+                    break;
+                }
+
+                level++; // Increment level to switch dimensions
             }
+
             return min;
         }
+        /* Help method FindNode for Find method
+         * @param node - node to be found in tree
+         */
         private List<Node<Key, T>> FindNode(Node<Key, T> node)
         {
             if (node == null || Root == null)
@@ -352,23 +282,28 @@ namespace Semestralna_Praca1
             int level = 0;
             while (CurrentNode != node)
             {
-                if (CurrentNode == null)
-                {
-                    return new List<Node<Key, T>>();
-                }
-
-                comparison = CurrentNode.AppKey.Compare(node.AppKey, level);
-
+                comparison = node.AppKey.Compare(CurrentNode.AppKey, level);
                 if (comparison == -1)
                 {
                     if (CurrentNode.Left == null)
                     {
-                        returningNodes.Add(CurrentNode);
-                        if (CurrentNode.Duplicates != null || CurrentNode.Duplicates.Count() > 0)
+                        /*returningNodes.Add(CurrentNode);
+                        if (CurrentNode.Duplicates != null && CurrentNode.Duplicates.Count() > 0)
                         {
                             returningNodes.AddRange(CurrentNode.Duplicates);
+                        }/
+                        if (CurrentNode.Right != null)
+                        {
+                            CurrentNode = CurrentNode.Right;
+                            level++;
+                            continue;
                         }
+                        else
+                        {
+                            return returningNodes;
+                        }*/
                         return returningNodes;
+
                     }
                     CurrentNode = CurrentNode.Left;
                     level++;
@@ -378,12 +313,22 @@ namespace Semestralna_Praca1
                 {
                     if (CurrentNode.Right == null)
                     {
-                        returningNodes.Add(CurrentNode);
-                        if (CurrentNode.Duplicates != null || CurrentNode.Duplicates.Count() > 0)
+                        /*returningNodes.Add(CurrentNode);
+                        if (CurrentNode.Duplicates != null && CurrentNode.Duplicates.Count > 0)
                         {
                             returningNodes.AddRange(CurrentNode.Duplicates);
                         }
+                        if (CurrentNode.Left != null)
+                        {
+                            CurrentNode = CurrentNode.Left;
+                            level++;
+                            continue;
+                        } else
+                        {
+                            return returningNodes;
+                        }*/
                         return returningNodes;
+
                     }
                     CurrentNode = CurrentNode.Right;
                     level++;
@@ -391,7 +336,7 @@ namespace Semestralna_Praca1
                 }
                 else
                 {
-                    if (CurrentNode.Equals(node))
+                    /*if (CurrentNode.Data.Equals(node.Data))
                     {
                         if (CurrentNode.Duplicates != null || CurrentNode.Duplicates.Count != 0)
                         {
@@ -403,18 +348,24 @@ namespace Semestralna_Praca1
                             return returningNodes;
 
                         }
-                        return new List<Node<Key, T>>() { CurrentNode };
+                        returningNodes.Add(CurrentNode);
+                        return returningNodes;
                     }
                     else
                     {
-                        return new List<Node<Key, T>>() { CurrentNode };
-                    }
+                        
+                    }*/
+                    returningNodes.Add(CurrentNode);
+                    return returningNodes;
 
                 }
             }
             return new List<Node<Key, T>>() { CurrentNode };
         }
-
+        /* Help method Swap for Remove method
+         * @param nodeToRemove - node which will be removed
+         * @param node - node for replacement od node to remove
+         */
         private Node<Key, T> Swap(Node<Key, T> nodeToRemove, Node<Key, T> node)
         {
             if (node == null || nodeToRemove == null)
@@ -436,7 +387,10 @@ namespace Semestralna_Praca1
             }
             return node;
         }
-
+        /*Find method of K-D tree
+         * @param data - data of object which will be used for finding
+         * @param key - key of object which will be used for finding
+         */
         public List<T> Find(T data, Key key)
         {
             if (data == null || key == null)
@@ -452,19 +406,30 @@ namespace Semestralna_Praca1
                 return result;
             } else
             {
-                return default;
-            }           
+                List<T> result = new List<T>();
+                foreach (Node<Key, T> prop in nodes)
+                {
+                    result.Add(prop.Data);
+                }
+                return result;
+            }
         }
-
-        public bool Update(T oldData, Key oldKey, T newData, Key newKey)
+        /*Update method of K-D tree
+         * @param newData - new data for replacement of oldData
+         * @param newKey - new key for replacement of oldKey
+         * @param oldData - data of object which will be used for finding and then replaced by newData
+         * @param oldKey - key of object which will be used for finding and then replaced by newKey
+         */
+        public bool Update(T newData, Key newKey, T oldData, Key oldKey)
         {
             if (oldData == null || oldKey == null || newData == null || newKey == null)
             {
                 return false;
             }
             Node<Key, T> temp = new Node<Key, T>(oldKey, oldData);
+            Property tempData = null; 
             List<Node<Key, T>> nodes = FindNode(temp);
-            if (nodes.Count > 1) 
+            /*if (nodes.Count > 1) 
             {
                 foreach (Node<Key, T> node in nodes)
                 {
@@ -473,14 +438,18 @@ namespace Semestralna_Praca1
                         temp = node;
                     }
                 }
+            }*/
+            if (nodes.Count == 0)
+            {
+                return false;
             }
             if (nodes.Count == 1)
             {
-                temp = nodes[0];
+                tempData = (Property)nodes[0].Data;
             }
             if (temp.AppKey.Equals(newKey))
             {
-                if (temp.Data.Equals(newData))
+                if (tempData.DataEquals((Property)newData))
                 {
                     return true;
                 } else
@@ -501,7 +470,10 @@ namespace Semestralna_Praca1
                 throw new InvalidOperationException("Error removing old node");
             }            
         }
-
+        /*Inorder method for test cases
+         * @param data - data from where will be the tree traversed
+         * @param key - key from where will be the tree traversed
+         */
         public List<Node<Key, T>> InOrder(T data, Key key)
         {
             if (data == null || key == null)
@@ -510,7 +482,7 @@ namespace Semestralna_Praca1
             }
             Node<Key, T> current = new Node<Key, T>(key, data);
             List<Node<Key, T>> nodes = FindNode(current);
-            if (nodes != null || nodes.Count == 0) 
+            if (nodes != null && nodes.Count > 0) 
             {
                 current = nodes[0];
             } else

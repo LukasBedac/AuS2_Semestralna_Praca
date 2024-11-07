@@ -1,152 +1,222 @@
 ﻿@page "/Sem1"
 @using Semestralna_Praca1
 @using System.ComponentModel.DataAnnotations;
-
+@inject ISnackbar SnackbarService
 <PageTitle>Semestral work - 1. part</PageTitle>
 <div>
-    <MudForm>
-        <EditForm Model="@Property">
-            <DataAnnotationsValidator/>
-            <MudGrid>
-                <MudItem xs="8" sm="6">                
-                    <MudPaper Class="pa-4">
-                        <MudText Typo="Typo.h5" GutterBottom>Enter Property Details</MudText>
-                        <MudGrid>                        
-                            <MudItem xs="12" sm="4">
-                            <MudTextField T="int" Label="Number of property" @bind-Value="@PropNumber"/>
-                            </MudItem>
-                            <MudItem xs="12" sm="4">
-                                <MudTextField T="string" Label="Description" FullWidth @bind-Text="@PropDescription"/>
-                            </MudItem>
-                            <MudItem xs="12" sm="4">
-                                <MudStack Style="width: 100px">
-                                    <MudSelect T="string"
-                                                Placeholder="Real Estate/Lot"                                           
-                                                @bind-Value="@PropertyTypeSelect">
-                                        @foreach (var prop in propertyType)
-                                        {
-                                            <MudSelectItem Value="prop">@prop</MudSelectItem>
-                                        }
-                                    </MudSelect>
-                                </MudStack>
-                            </MudItem>
-                            <MudItem xs="12">
-                                <div style="height: 20px;"></div> 
-                                <MudText Typo="Typo.h5" GutterBottom>First GPS coord</MudText>
-                            </MudItem>                    
+    <MudGrid>
+        <MudItem xs="12" sm="6">
+            <MudPaper Class="pa-4" Elevation="3">
+                <MudGrid>
+                    <MudItem xs="12" sm="5">
+                        <MudTextField T="int" Label="Number of generated data" @bind-Value="@NumberOfProperties"></MudTextField>     
+                    </MudItem>
+                    <MudItem xs="12" sm="4">
+                        <MudStack Style="width: 120px">
+                            <MudSelect T="string"
+                                       Placeholder="Select..."
+                                       Label="Select property"
+                                       @bind-Value="@PropertyTypeGeneration">
+                                @foreach (var prop in propertyType)
+                                {
+                                    @if ("Property".Equals(prop))
+                                    {
+                                        continue;
+                                    }
+                                    <MudSelectItem Value="prop">@prop</MudSelectItem>
+                                }
+                            </MudSelect>
+                        </MudStack>
+                    </MudItem > 
+                    <MudItem xs="12" sm="3">
+                        <MudFab ButtonType="ButtonType.Submit" Color="Color.Primary" Label="Generate Data" OnClick="GenerateData"></MudFab>
+                    </MudItem>
+                    <MudItem xs="12" sm="3">
+                        <MudFab Color="Color.Primary" Label="Save to file" OnClick="SaveToFile"></MudFab>
+                    </MudItem>
+                    <MudItem xs="12" sm="3">
+                        <MudFab Color="Color.Primary" Label="Load from file" OnClick="LoadFromFile"></MudFab>
+                    </MudItem>
+                </MudGrid>
+            </MudPaper>
+        </MudItem>
+    </MudGrid>
+</div>
+<div>
+    <EditForm Model="Property">
+        <DataAnnotationsValidator/>
+        <MudGrid>
+            <MudItem xs="8" sm="6">                
+                <MudPaper Class="pa-4" Elevation="3">
+                    <MudText Typo="Typo.h5" GutterBottom>Enter Property Details</MudText>
+                    <MudGrid>                        
                         <MudItem xs="12" sm="4">
-                            <MudTextField T="double" Label="Latitude" @bind-Value="@LatDouble"/>
+                        <MudTextField T="int" Label="Number of property" Placeholder="Property number" @bind-Value="@PropNumber"/>
+                        </MudItem>
+                        <MudItem xs="12" sm="4">
+                            <MudTextField T="string" Label="Description" FullWidth @bind-Text="@PropDescription"/>
+                        </MudItem>
+                        <MudItem xs="12" sm="4">
+                            <MudStack Style="width: 120px">
+                                <MudSelect T="string"
+                                            Placeholder="Select..."
+                                            @bind-Value="@PropertyTypeSelect"
+                                            Required="true"
+                                            RequiredError="Select property"
+                                            Label="Select property">
+                                    @foreach (var prop in propertyType)
+                                    {
+                                        <MudSelectItem Value="prop">@prop</MudSelectItem>
+                                    }
+                                </MudSelect>
+                            </MudStack>
+                        </MudItem>
+                        <MudItem xs="12">
+                            <div style="height: 20px;"></div> 
+                            <MudText Typo="Typo.h5" GutterBottom>First GPS coord</MudText>
+                        </MudItem>                    
+                    <MudItem xs="12" sm="4">
+                            <MudTextField T="double" Label="Latitude" Placeholder="Max 6 decimal places" @bind-Value="@LatDouble" Required="true"/>
+                    </MudItem>
+                    <MudItem xs="12" sm="2">
+                        <MudStack Style="width: 50px">
+                            <MudSelect T="string"
+                                            Placeholder="N/S"
+                                            Label="N+/S-"
+                                            Required="true"
+                                            @bind-Value="@LatSelect">
+                                @foreach (var lat in latitudeSelect)
+                                {
+                                        <MudSelectItem Value="lat">@lat</MudSelectItem>
+                                }
+                                </MudSelect>
+                        </MudStack>
+                    </MudItem>
+                    <MudItem xs="12" sm="4">
+                            <MudTextField T="double" Label="Longtitude" Placeholder="Max 6 decimal places" @bind-Value="@LongDouble" Required="true" />
+                    </MudItem>
+                    <MudItem xs="12" sm="2">
+                        <MudStack Style="width: 50px">
+                            <MudSelect T="string"
+                                        Placeholder="E/W"
+                                        Label="+E/W-"
+                                        Required="true"
+                                        @bind-Value="@LongSelect">
+                                @foreach (var longS in longtitudeSelect)
+                                {
+                                    <MudSelectItem Value="longS">@longS</MudSelectItem>
+                                }
+                            </MudSelect>
+                        </MudStack>                        
+                    </MudItem>
+                        <MudItem xs="12">
+                            <div style="height: 20px;"></div>
+                            <MudText Typo="Typo.h5" GutterBottom>Second GPS coord</MudText>
+                        </MudItem>
+                        <MudItem xs="12" sm="4">                            
+                            <MudTextField T="double" Label="Latitude" Placeholder="Max 6 decimal places" @bind-Value="@LatDouble2" Required="true" />
                         </MudItem>
                         <MudItem xs="12" sm="2">
                             <MudStack Style="width: 50px">
                                 <MudSelect T="string"
-                                                Placeholder="N/S"
-                                    @bind-Value="@LatSelect">
+                                            Placeholder="N/S"
+                                            Label="N+/S-"
+                                            Required="true"
+                                            @bind-Value="@LatSelect2">
                                     @foreach (var lat in latitudeSelect)
                                     {
                                         <MudSelectItem Value="lat">@lat</MudSelectItem>
                                     }
-                                    </MudSelect>
+                                </MudSelect>
                             </MudStack>
                         </MudItem>
-                        <MudItem xs="12" sm="4">                            
-                            <MudTextField T="double" Label="Longtitude" @bind-Value="@LongDouble"/>
+                        <MudItem xs="12" sm="4">
+                            <MudTextField T="double" Label="Longtitude" Placeholder="Max 6 decimal places" @bind-Value="@LongDouble2" Required="true" />
                         </MudItem>
                         <MudItem xs="12" sm="2">
                             <MudStack Style="width: 50px">
                                 <MudSelect T="string"
                                             Placeholder="E/W"
-                                            @bind-Value="@LongSelect">
+                                            Label="E+/W-"
+                                            Required="true"
+                                            @bind-Value="@LongSelect2">
                                     @foreach (var longS in longtitudeSelect)
                                     {
                                         <MudSelectItem Value="longS">@longS</MudSelectItem>
                                     }
                                 </MudSelect>
-                            </MudStack>                        
+                            </MudStack>
                         </MudItem>
-                            <MudItem xs="12">
-                                <div style="height: 20px;"></div>
-                                <MudText Typo="Typo.h5" GutterBottom>Second GPS coord</MudText>
-                            </MudItem>
-                            <MudItem xs="12" sm="4">                            
-                                <MudTextField T="double" Label="Latitude" @bind-Value="@LatDouble2"/>
-                            </MudItem>
-                            <MudItem xs="12" sm="2">
-                                <MudStack Style="width: 50px">
-                                    <MudSelect T="string"
-                                                Placeholder="N/S"
-                                                @bind-Value="@LatSelect2">
-                                        @foreach (var lat in latitudeSelect)
-                                        {
-                                            <MudSelectItem Value="lat">@lat</MudSelectItem>
-                                        }
-                                    </MudSelect>
-                                </MudStack>
-                            </MudItem>
-                            <MudItem xs="12" sm="4">
-                                <MudTextField T="double" Label="Longtitude" @bind-Value="@LongDouble2"/>
-                            </MudItem>
-                            <MudItem xs="12" sm="2">
-                                <MudStack Style="width: 50px">
-                                    <MudSelect T="string"
-                                                Placeholder="E/W"
-                                                @bind-Value="@LongSelect2">
-                                        @foreach (var longS in longtitudeSelect)
-                                        {
-                                            <MudSelectItem Value="longS">@longS</MudSelectItem>
-                                        }
-                                    </MudSelect>
-                                </MudStack>
-                            </MudItem>
-                            <MudItem xs="12">
-                                <MudText Typo="Typo.subtitle2" Align="Align.Center" Color="Color.Primary">
-                                    In this part, you can insert two GPS coords to locate the property and then you click on button you want to use for now.
-                                </MudText>
-                            </MudItem>
-                        </MudGrid>
-                    </MudPaper>
-                    <br/>               
-                </MudItem>
+                        <MudItem>
+                            <MudFab Color="Color.Error" ButtonType="ButtonType.Reset" Label="Reset" OnClick="Reset"></MudFab>
+                        </MudItem>
+                        <MudItem xs="12">
+                            <MudText Typo="Typo.subtitle2" Align="Align.Center" Color="Color.Primary">
+                                Here you can type data which will be used <br/>
+                                If you want to find or delete - only fill GPS <br/>
+                                If you want to add or edit - at least GPS
+                            </MudText>
+                        </MudItem>
+                    </MudGrid>
+                </MudPaper>
+                <br/>               
+            </MudItem>
 
-                <MudItem xs="8" sm="3" >
-                    <MudPaper Class="pa-3" Width="80%" Elevation="5">
-                        <MudText Typo="Typo.h5" GutterBottom>Operations - Find</MudText>
-                            <MudFab Color="Color.Primary" StartIcon="@Icons.Material.Filled.FindInPage" Label="Find Real Estate" OnClick="FindRealEstate"></MudFab>
-                            <MudDivider/>
-                            <MudFab Color="Color.Primary" StartIcon="@Icons.Material.Filled.FindInPage" Label="Find Lot" OnClick="FindLot"></MudFab>
-                            <MudDivider/>
-                            <MudFab Color="Color.Primary" StartIcon="@Icons.Material.Filled.FindInPage" Label="Find Property" OnClick="FindProperty"></MudFab>
-                    </MudPaper>
-
-                    <MudPaper Class="pa-3 mt-4" Width="80%" Elevation="5">
-                        <MudText Typo="Typo.h5" GutterBottom>Operations - Edit</MudText>
-                        <MudFab Color="Color.Primary" StartIcon="@Icons.Material.Filled.Edit" Label="Edit Real Estate" OnClick="EditRealEstate"></MudFab>
-                        <MudDivider />
-                        <MudFab Color="Color.Primary"StartIcon="@Icons.Material.Filled.Edit" Label="Edit Lot" OnClick="EditLot"></MudFab>                   
-                    </MudPaper>
-                </MudItem>
-                <MudItem xs="8" sm="3">
-                    <MudPaper Class="pa-3 mt-4" Width="80%" Elevation="5">
-                        <MudText Typo="Typo.h5" GutterBottom>Operations - Delete</MudText>
-                        <MudFab Color="Color.Primary" StartIcon="@Icons.Material.Filled.Delete" Label="Delete Real Estate" OnClick="DeleteRealEstate"></MudFab>
-                        <MudDivider />
-                        <MudFab Color="Color.Primary" StartIcon="@Icons.Material.Filled.Delete" Label="Delete Lot" OnClick="DeleteLot"></MudFab>
-                    </MudPaper>
-
-                    <MudPaper Class="pa-3 mt-4" Width="80%" Elevation="5">
-                        <MudText Typo="Typo.h5" GutterBottom>Operations - Add</MudText>
-                        <MudFab Color="Color.Primary" StartIcon="@Icons.Material.Filled.Add" Label="Add Real Estate" OnClick="AddRealEstate"></MudFab>
-                        <MudDivider/>
-                        <MudFab Color="Color.Primary"StartIcon="@Icons.Material.Filled.Add" Label="Add Lot" OnClick="AddLot"></MudFab>
-                    </MudPaper>                
-                </MudItem>
-            </MudGrid>
-        </EditForm>
-    </MudForm>
+            <MudItem xs="8" sm="3" >
+                <MudPaper Class="pa-3"  Elevation="5">
+                    <MudText Typo="Typo.h5" GutterBottom>Operations - Find</MudText>
+                    <MudFab Color="Color.Primary" StartIcon="@Icons.Material.Filled.FindInPage" Label="Find Real Estate" OnClick="FindRealEstate"></MudFab>
+                    <MudDivider/>
+                    <MudFab Color="Color.Primary" StartIcon="@Icons.Material.Filled.FindInPage" Label="Find Lot" OnClick="FindLot"></MudFab>
+                    <MudDivider/>
+                    <MudFab Color="Color.Primary" StartIcon="@Icons.Material.Filled.FindInPage" Label="Find Property" OnClick="FindProperty"></MudFab>
+                    <br /><br />
+                    <MudText Typo="Typo.h5" GutterBottom>Operations - Edit</MudText>
+                    <MudFab Color="Color.Primary" StartIcon="@Icons.Material.Filled.Edit" Label="Edit Property" OnClick="EditProperty"></MudFab>                 
+                    <br /><br />
+                    <MudText Typo="Typo.h5" GutterBottom>Operations - Delete</MudText>
+                    <MudFab Color="Color.Primary" StartIcon="@Icons.Material.Filled.Delete" Label="Delete Property" OnClick="DeleteProperty"></MudFab>
+                    <br /><br />
+                    <MudText Typo="Typo.h5" GutterBottom>Operations - Add</MudText>
+                    <MudFab Color="Color.Primary" StartIcon="@Icons.Material.Filled.Add" Label="Add Property" OnClick="AddProperty"></MudFab>
+                </MudPaper>
+            </MudItem>
+        </MudGrid>
+    </EditForm>
     <MudItem>
         <MudPaper Class="pa-4">
             <MudText>RESULTS</MudText>
-            <!--TABLE HERE-->
+            <MudTable T="Property" RowClass="cursor-pointer" Breakpoint="Breakpoint.Sm" Items="returnList" 
+            @ref="mudTable" Hover="true" RowClassFunc="@SelectedRow" OnRowClick="OnRowClicked">
+                <HeaderContent>
+                    <MudTh>Id</MudTh>
+                    <MudTh>Type</MudTh>
+                    <MudTh>Name</MudTh>
+                    <MudTh>Number</MudTh>
+                    <MudTh>Latitude</MudTh>
+                    <MudTh>Latitude Coord</MudTh>
+                    <MudTh>Longitude</MudTh>
+                    <MudTh>Latitude Coord</MudTh>
+                    <MudTh>Latitude2</MudTh>
+                    <MudTh>Latitude2 Coord</MudTh>
+                    <MudTh>Longitude2</MudTh>
+                    <MudTh>Latitude Coord</MudTh>
+                </HeaderContent>
+                <RowTemplate>
+                    <MudTd DataLabel="Id">@context.ID</MudTd>
+                    <MudTd DataLabel="Type">@propertType</MudTd>
+                    <MudTd DataLabel="Name">@context.Description</MudTd>
+                    <MudTd DataLabel="Number">@context.Number</MudTd>
+                    <MudTd DataLabel="Latitude">@context.GPSCoords[0].Latitude</MudTd>
+                    <MudTd DataLabel="Latitude Coord">@context.GPSCoords[0].LatitudeCoord</MudTd>
+                    <MudTd DataLabel="Longitude">@context.GPSCoords[0].Longtitude</MudTd>
+                    <MudTd DataLabel="Longtitude Coord">@context.GPSCoords[0].LongtitudeCoord</MudTd>
+                    <MudTd DataLabel="Latitude2">@context.GPSCoords[1].Latitude</MudTd>
+                    <MudTd DataLabel="Latitude2 Coord">@context.GPSCoords[1].LatitudeCoord</MudTd>
+                    <MudTd DataLabel="Longitude2">@context.GPSCoords[1].Longtitude</MudTd>
+                    <MudTd DataLabel="Longitude2 Coord">@context.GPSCoords[1].LongtitudeCoord</MudTd>
+                </RowTemplate>
+            </MudTable>
         </MudPaper>
     </MudItem>
 </div>

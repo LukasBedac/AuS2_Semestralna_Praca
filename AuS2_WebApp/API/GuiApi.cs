@@ -1,4 +1,6 @@
-﻿using Semestralna_Praca1;
+﻿using GUIAuS2;
+using Semestralna_Praca1;
+using System.Collections.ObjectModel;
 
 namespace AuS2_WebApp.API
 {
@@ -7,40 +9,47 @@ namespace AuS2_WebApp.API
         //TODO 1.3 Implement API
         public GuiApi()
         {
-            Data = new DataGenAndTest();
+
         }
         public int UserSelectedId { get; set; }
-        public DataGenAndTest Data { get; set; }
+        private GUIGenerator Data { get; set; } = GUIGenerator.GetDataGenerator();
 
-        public void Insert(int property, T data)
+        public bool Insert(string property, T data)
         {
-            Property toInsert = property == 0 ? new RealEstate() : new Lot();
-            
-            //Data.Insert();
+           return Data.Insert(property, (Property)data);                     
         }
 
 
-        public void Update()
+        public bool Update(T newData, T oldData)
         {
-
+            return Data.Update((Property)newData, (Property)oldData);
         }
-
-        public void Delete() 
+        public List<Property> Find(string type, T data)
         {
-        
+            List<Property> list = Data.Find(type, (Property)data);
+            return list;
+        }
+        public bool Delete(string type, Property prop)
+        {
+            return Data.Delete(type, prop);
         }
 
         public void SendResults()
         {
 
         }
-        public void GenerateData()
+        public bool GenerateData(int number, string type)
         {
-           // Data.CreateTrees();
+           return Data.FillTrees(number, type);           
         }
-        public void RunTest()
-        {
 
+        public bool SaveToFile()
+        {
+            return Data.SaveToFile();
+        }
+        public bool LoadFromFile()
+        {
+            return Data.LoadFromFile();
         }
     }
 }

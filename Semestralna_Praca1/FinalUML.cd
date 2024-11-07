@@ -1,0 +1,71 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<ClassDiagram MajorVersion="1" MinorVersion="1" MembersFormat="FullSignature">
+  <Class Name="Semestralna_Praca1.AppKey" Collapsed="true" BaseTypeListCollapsed="true">
+    <Position X="0.75" Y="0.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAgAAAAAAAAAAQAAAAAABAAAAAYAA=</HashCode>
+      <FileName>AppKey.cs</FileName>
+    </TypeIdentifier>
+    <Lollipop Position="0.2" Collapsed="true" />
+  </Class>
+  <Class Name="Semestralna_Praca1.GPS" Collapsed="true">
+    <Position X="2.5" Y="0.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAQIAABAAAAAAAAAAAAAAAAAAgA=</HashCode>
+      <FileName>GPS.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Semestralna_Praca1.KDTree&lt;Key, T&gt;" Collapsed="true">
+    <Position X="4.25" Y="0.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAQAAEACAAAAACAAAAAABAAAAAAJQAABQEAAAFAAAAA=</HashCode>
+      <FileName>KDTree.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Semestralna_Praca1.Lot" Collapsed="true" BaseTypeListCollapsed="true">
+    <Position X="0.75" Y="1.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAggAAEgEAAAAAAAAAAAAAAAAAAAAAAgAQ=</HashCode>
+      <FileName>Lot.cs</FileName>
+    </TypeIdentifier>
+    <Lollipop Position="0.2" Collapsed="true" />
+  </Class>
+  <Class Name="Semestralna_Praca1.Node&lt;Key, T&gt;" Collapsed="true">
+    <Position X="2.5" Y="1.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAEAAAAAAAAAAAAAwAAAAAAAABAACACAAAAAAAA=</HashCode>
+      <FileName>Node.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Semestralna_Praca1.RealEstate" Collapsed="true" BaseTypeListCollapsed="true">
+    <Position X="4.25" Y="1.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAACAggAAEgEAAAAAAAAAAAAAAAAAAAAAAgAQ=</HashCode>
+      <FileName>RealEstate.cs</FileName>
+    </TypeIdentifier>
+    <Lollipop Position="1.099" Collapsed="true" />
+  </Class>
+  <Class Name="Semestralna_Praca1.TestKey" Collapsed="true" BaseTypeListCollapsed="true">
+    <Position X="0.75" Y="2.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAgAAAAAAAAAAAAAAAAABAgAEAYAA=</HashCode>
+      <FileName>TestKey.cs</FileName>
+    </TypeIdentifier>
+    <Lollipop Position="0.2" Collapsed="true" />
+  </Class>
+  <Interface Name="Semestralna_Praca1.DataKey" Collapsed="true">
+    <Position X="0.75" Y="3.75" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAgAAAAAAAAAAAAAAAAABAAAAAAAA=</HashCode>
+      <FileName>DataKey.cs</FileName>
+    </TypeIdentifier>
+  </Interface>
+  <Interface Name="Semestralna_Praca1.Property" Collapsed="true">
+    <Position X="2.5" Y="3.75" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAggAAAAEAAAAAAAAAAAAAAAAAAAAAAgAQ=</HashCode>
+      <FileName>Property.cs</FileName>
+    </TypeIdentifier>
+  </Interface>
+  <Font Name="Segoe UI" Size="9" />
+</ClassDiagram>

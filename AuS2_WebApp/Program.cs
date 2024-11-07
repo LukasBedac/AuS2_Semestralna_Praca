@@ -2,6 +2,8 @@ using AuS2_WebApp.Data;
 using Microsoft.AspNetCore.Components;
 using Microsoft.AspNetCore.Components.Web;
 using MudBlazor.Services;
+using Semestralna_Praca1;
+using GUIAuS2;
 var builder = WebApplication.CreateBuilder(args);
 
 // Add services to the container.
@@ -27,5 +29,6 @@ app.UseRouting();
 
 app.MapBlazorHub();
 app.MapFallbackToPage("/_Host");
+
 
 app.Run();

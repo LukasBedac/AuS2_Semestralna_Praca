@@ -103,26 +103,6 @@
                 throw new Exception("Bad data send to comparer!");
             }
         }
-        public bool Compare(DataKey data)
-        {
-            if (data == null)
-            {
-                throw new Exception("Bad data send to comparer!");
-            }
-            if (data is TestKey)
-            {
-                TestKey key = (TestKey)data;
-                if (key.X == this.X)
-                {
-                    if (key.Y == this.Y)
-                    {
-                        return true;
-
-                    }
-                }
-            }
-            return false;
-        }
 
         public bool Equals(DataKey data)
         {

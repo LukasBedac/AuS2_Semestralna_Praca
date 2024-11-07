@@ -9,7 +9,6 @@ namespace Semestralna_Praca1
     public interface DataKey
     {
         public int Compare(DataKey data, int level);
-        public bool Compare(DataKey data);
         public bool Equals(DataKey data);
     }
 }

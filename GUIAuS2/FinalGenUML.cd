@@ -1,0 +1,67 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<ClassDiagram MajorVersion="1" MinorVersion="1">
+  <Class Name="GUIAuS2.DataGenerator">
+    <Position X="0.5" Y="0.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AQAAAkAAAAAgAAAAAAAAQgAAACBQAAYAAAwAAAAhACA=</HashCode>
+      <FileName>DataGenerator.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="GUIAuS2.GPSGenerator">
+    <Position X="8.25" Y="0.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAIAAAAAABAAAAAAAAAAACAAAAAAAAAgAAAAAAAA=</HashCode>
+      <FileName>GPSGenerator.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="GUIAuS2.GUIGenerator">
+    <Position X="2.25" Y="0.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AQQAAkIgAAAgAAAAAAAAQgAAACFYAEYAAAQAAAAhECA=</HashCode>
+      <FileName>GUIGenerator.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="GUIAuS2.KeyValuesGenerator">
+    <Position X="6.5" Y="2.75" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAIAAQAAAQAAAAAAAAAAAAAQAAAAAAACCAAAAAAA=</HashCode>
+      <FileName>KeyValuesGenerator.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="GUIAuS2.PropNameGenerator">
+    <Position X="10" Y="0.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAADCAAAAAAAAAAAAAEA=</HashCode>
+      <FileName>PropNameGenerator.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="GUIAuS2.PropNumberGenerator">
+    <Position X="8.25" Y="2.75" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAIAAAAAAAAAIAAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>PropNumberGenerator.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="GUIAuS2.UniqueIDGenerator">
+    <Position X="6.5" Y="0.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAgAAAAABAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>UniqueIDGenerator.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Semestralna_Praca1.FileData">
+    <Position X="4.75" Y="3.75" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>ABAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAABA=</HashCode>
+      <FileName>FileData.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Semestralna_Praca1.StructureTest">
+    <Position X="4.75" Y="0.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAMAAgAAAAAAAAAAAAAAAAAEIAAAAAABAAAAAAIA=</HashCode>
+      <FileName>StructureTest.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Font Name="Segoe UI" Size="9" />
+</ClassDiagram>

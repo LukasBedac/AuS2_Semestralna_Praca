@@ -8,11 +8,9 @@ namespace Semestralna_Praca2
 {
     public interface IRecord<T> : IData
     {
-        public int ValidCount { get; set; }
-
-        public bool MyEquals()
-        {
-            return false;
-        }
+        public abstract IRecord<T> Create();
+        public bool MyEquals(T data);
+        public bool MyEquals(int customerId);
+        public bool MyEquals(string ecv);
     }
 }

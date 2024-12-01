@@ -8,6 +8,11 @@
   </PropertyGroup>
 
   <ItemGroup>
+    <PackageReference Include="Bogus" Version="35.6.1" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\GUIAuS2\GUIAuS2.csproj" />
     <ProjectReference Include="..\Semestralna_Praca2\Semestralna_Praca2.csproj" />
   </ItemGroup>
 

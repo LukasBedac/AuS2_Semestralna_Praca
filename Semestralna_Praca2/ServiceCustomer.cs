@@ -47,12 +47,6 @@ namespace Semestralna_Praca2
             SetLengths();
         }
 
-        public IRecord<ServiceCustomer> Create()
-        {
-            return new ServiceCustomer();
-            
-        }
-
         public void FromByteToArray(byte[] bytes)
         {
             byte[] bID = new byte[4];
@@ -67,6 +61,7 @@ namespace Semestralna_Praca2
             ECV = Encoding.UTF8.GetString(bECV);
             SureName = Encoding.UTF8.GetString(bSureName);
             LastName = Encoding.UTF8.GetString(bLastname);
+            SetLengths();
         }
 
         public byte[] ToByteArray()
@@ -75,8 +70,7 @@ namespace Semestralna_Praca2
             byte[] bECV = Encoding.UTF8.GetBytes(ECV) ?? new byte[10];
             byte[] bSureName = Encoding.UTF8.GetBytes(SureName) ?? new byte[15];
             byte[] bLastname = Encoding.UTF8.GetBytes(LastName) ?? new byte[20];
-            //byte[] bServiceVisits = GetServiceVisitsBytes() ?? new byte[SERVICEVISITLENGTH * 5];
-            int length = bID.Length + bECV.Length + bSureName.Length + bLastname.Length;// + bServiceVisits.Length; //TODO 
+            //byte[] bServiceVisits = GetServiceVisitsBytes() ?? new byte[SERVICEVISITLENGTH * 5];            
             byte[] bytes = new byte[SIZE];
             Buffer.BlockCopy(bID, 0, bytes, 0, bID.Length);
             Buffer.BlockCopy(bECV, 0, bytes, bID.Length, bECV.Length);
@@ -117,15 +111,15 @@ namespace Semestralna_Praca2
         {
             if (ECV.Length < 10)
             {
-                ECV.PadRight(10, '\0');
+                ECV = ECV.PadRight(10, '\0');
             }
             if (SureName.Length < 15)
             {
-                SureName.PadRight(15, '\0');
+                SureName = SureName.PadRight(15, '\0');
             }
             if (LastName.Length < 20)
             {
-                LastName.PadRight(20, '\0');
+                LastName = LastName.PadRight(20, '\0');
             }
         }
 
